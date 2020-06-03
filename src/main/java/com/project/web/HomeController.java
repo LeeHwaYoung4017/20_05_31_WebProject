@@ -52,10 +52,16 @@ public class HomeController {
 		return "mainHome";
 	}
 	
-	@RequestMapping("/test1")
-	public String test1(Model model, HttpServletRequest request) {
+	@RequestMapping("/login")
+	public String login(Model model, HttpServletRequest request) {
 		
-		return "test1";
+		return "login";
+	}
+	
+	@RequestMapping("/join")
+	public String join(Model model, HttpServletRequest request) {
+		
+		return "join";
 	}
 	
 }
