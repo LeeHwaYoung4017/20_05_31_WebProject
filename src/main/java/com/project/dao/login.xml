@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.dao.LoginDAO">
+	
+	<insert id="loginInsert" parameterType="com.project.vo.LoginVO">
+		insert 
+		into PROJECTMEMBER 
+		(idx, id, password, phone, email, address)
+		values 
+		(PROJECTMEMBER_idx_seq.nextval, #{id}, #{password}, #{phone}, #{email}, #{address})
+	</insert>
+	
+	<select id="checkID" parameterType="String" resultType="String">
+		select id from PROJECTMEMBER where id=#{id}
+	</select>
+
+</mapper>

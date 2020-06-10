@@ -72,8 +72,6 @@ p {
     color: black;
     position: absolute;
     top: 11px;
-    transition: all .2s ease;
-    transform-origin: 0 0;
     cursor: text; }
   .form-group span.border {
     height: 2px;
@@ -82,8 +80,6 @@ p {
     width: 100%;
     left: 0;
     top: 41px;
-    transform: scaleX(0);
-    transition: all .15s ease;
     background: black; }
 
 .form-control {
@@ -95,11 +91,11 @@ p {
   font-size: 15px;
   background: none;
   font-family: "Montserrat-SemiBold"; }
-  .form-control:focus, .form-control:valid {
+  .form-control:valid {
     border-bottom: 2px solid #fff; }
-    .form-control:focus + span, .form-control:valid + span {
+    .form-control:valid + span {
       transform: translateY(-22px) scale(0.8); }
-      .form-control:focus + span + .border, .form-control:valid + span + .border {
+      .border, .form-control:valid + span + .border {
         transform: scaleX(1); }
 
 textarea.form-control {
@@ -186,7 +182,7 @@ button {
     -o-box-shadow: none; }
 
   .wrapper {
-    background: #39459b;
+    background: 0d99d7;
     border: 10px solid #0d99d7; } }
     
 
