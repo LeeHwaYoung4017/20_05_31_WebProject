@@ -27,27 +27,31 @@
 				</label>
 				<label class="form-group">
 					<input type="password" name="password" class="form-control" autocomplete="off">
-					<span for="">PASSWORD</span>
+					<span>PASSWORD</span>
 					<span class="border"></span>
 				</label>
 				<label class="form-group">
 					<input type="password" name="repassword" class="form-control" autocomplete="off">
-					<span for="">REPASSWORD</span>
+					<span>REPASSWORD</span>
 					<span class="border"></span>
 				</label>
 				<label class="form-group">
 					<input type="text" name="phone" class="form-control" autocomplete="off">
-					<span for="">PHONE</span>
+					<span>PHONE</span>
 					<span class="border"></span>
 				</label>
 				<label class="form-group">
 					<input type="text" name="email" class="form-control" autocomplete="off">
-					<span for="">EMAIL</span>
+					<span>EMAIL</span>
 					<span class="border"></span>
 				</label>
 				<label class="form-group">
 					<input type="text" name="addr" class="form-control" autocomplete="off">
-					<span for="">ADDRESS</span>
+					<span>ADDRESS</span>
+					<span class="border"></span>
+				</label>
+				<label class="form-group">
+					<input type="checkbox" value="chk" id="agree" autocomplete="off"">14세 이상입니다. (필수)
 					<span class="border"></span>
 				</label>
 				<table style="margin:0 auto">
