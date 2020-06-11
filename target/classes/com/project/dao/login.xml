@@ -5,14 +5,24 @@
 	
 	<insert id="loginInsert" parameterType="com.project.vo.LoginVO">
 		insert 
-		into PROJECTMEMBER 
+		into PROJECT_MEMBER 
 		(idx, id, password, phone, email, address)
 		values 
-		(PROJECTMEMBER_idx_seq.nextval, #{id}, #{password}, #{phone}, #{email}, #{address})
+		(PROJECT_MEMBER_idx_seq.nextval, #{id}, #{password}, #{phone}, #{email}, #{address})
 	</insert>
 	
 	<select id="checkID" parameterType="String" resultType="String">
-		select id from PROJECTMEMBER where id=#{id}
+		select
+		id from PROJECT_MEMBER 
+		where 
+		id=#{id}
+	</select>
+	
+	<select id="selectById" resultType="com.project.vo.LoginVO" parameterType="String">
+		select 
+		* from PROJECT_MEMBER 
+		where 
+		id = #{id}
 	</select>
 
 </mapper>

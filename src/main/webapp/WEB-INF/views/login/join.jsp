@@ -35,7 +35,7 @@
 			idRequest.onreadystatechange = checkIdResponse;
 		}
 	}
-
+	//아이디를 체크해서 가져온다(아작스)
 	function checkIdResponse(){
 		var object = eval("(" + idRequest.responseText + ")");
 		var result = object.result;
@@ -43,7 +43,7 @@
 		var div = document.getElementById("id_c");
 		var id_check = document.getElementById("idcheck");
 		if(check=="OK"){
-			$("#id_c").css("color", "blue");
+			$("#id_c").css("color", "green");
 			id_check.value = "ok";
 			div.innerHTML = "사용가능한 아이디 입니다.";
 		}else{
@@ -52,6 +52,60 @@
 		}
 	}	
 	
+	
+	//비밀번호체크(아작스)
+	function checkPW(){
+		var div = document.getElementById("pw_c");
+		var pw = document.getElementById("password").value;
+		var num = pw.search(/[0-9]/g);
+		var eng = pw.search(/[a-z]/ig);
+		var spe = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+		var pw_check = document.getElementById("pwcheck");
+		if(!pw || pw.trim().length < 8 || pw.trim().length > 20 || pw.search(/\s/) != -1){
+			$("#pw_c").css("color", "red");
+			div.innerHTML = "비밀번호는 공백 없이 8자리 이상 20자리 이하로 작성해주세요.";
+		}else if(num < 0 || eng < 0 || spe < 0 ){
+			$("#pw_c").css("color", "red");
+			div.innerHTML = "영문, 숫자, 특수문자를 혼합하여 입력해주세요.";
+		}else{
+			$("#pw_c").css("color", "green");
+			pw_check.value="ok";
+			div.innerHTML = "사용 가능한 비밀번호 입니다.";
+		}
+	}
+
+	//비밀번호 확인 체크(아작스)
+	function checkPW2(){
+		var div = document.getElementById("pw_ck");
+		var pw = document.getElementById("password").value;
+		var chkpw = document.getElementById("repassword").value;
+		if(pw.length==chkpw.length){
+			if(pw!=chkpw){
+				$("#pw_ck").css("color", "red");
+				div.innerHTML = "비밀번호가 일치하지 않습니다.";
+			}else{
+				$("#pw_ck").css("color", "blue");
+				div.innerHTML = "비밀번호가 일치합니다.";
+			}
+		} else {
+			$("#pw_ck").css("color", "blue");
+			div.innerHTML = null;
+		}
+	}
+	
+	//주소 검색 API 팝업
+	function goPopup(){
+		// 주소검색을 수행할 팝업 페이지를 호출합니다.
+		// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+		var url = "./jusoPopup";
+		//사용할 제목
+		var title = "pop";
+		//사이즈 및 옵션
+		var option = "width=570,height=420, scrollbars=yes, resizable=yes";
+		//창을 띄운다.
+		window.open(url,title,option);
+	}
+
 </script>
 
 </head>
@@ -67,39 +121,41 @@
 			<form action="joinOK" method="post">
 				<label class="form-group">
 					<input type="text" name="id" id="id" class="form-control" autocomplete="off" onkeyup="checkID()">
-					<span>ID</span>
+					<span>&nbsp;&nbsp;ID</span>
 					<div id="id_c"></div>
 					<input type="hidden" id="idcheck" value="not"/>
 					<span class="border"></span>
 				</label>
 				<label class="form-group">
-					<input type="password" name="password" id="password" class="form-control" autocomplete="off">
+					<input type="password" name="password" id="password" class="form-control" autocomplete="off" onkeyup="checkPW()">
 					<span>PASSWORD</span>
+					<div id="pw_c"></div> 
+					<input type="hidden" id="pwcheck" name="pwcheck" value="not"/>
 					<span class="border"></span>
 				</label>
 				<label class="form-group">
-					<input type="password" name="repassword" id="repassword" class="form-control" autocomplete="off">
+					<input type="password" name="repassword" id="repassword" class="form-control" autocomplete="off" onkeyup="checkPW2()">
 					<span>REPASSWORD</span>
+					<div id="pw_ck"></div>
 					<span class="border"></span>
 				</label>
 				<label class="form-group">
-					<input type="text" name="phone" class="form-control" autocomplete="off">
-					<span>PHONE</span>
+					<input type="text" name="phone" class="form-control" autocomplete="off" maxlength="11">
+					<span>&nbsp;PHONE</span>
 					<span class="border"></span>
 				</label>
 				<label class="form-group">
 					<input type="text" name="email" class="form-control" autocomplete="off">
-					<span>EMAIL</span>
+					<span>&nbsp;EMAIL</span>
 					<span class="border"></span>
 				</label>
 				<label class="form-group">
-					<input type="text" name="address" class="form-control" autocomplete="off">
-					<span>ADDRESS</span>
+					<input type="text" name="userAddr" id="userAddr" class="form-control" autocomplete="off" onclick="goPopup()">
+					<span style="transform: translateY(-22px) scale(0.8);">&nbsp;ADDRESS</span>
 					<span class="border"></span>
 				</label>
 				<label class="form-group">
 					<input type="checkbox" value="chk" id="agree" autocomplete="off"">14세 이상입니다. (필수)
-					<span class="border"></span>
 				</label>
 				<table style="margin:0 auto">
 					<tr>

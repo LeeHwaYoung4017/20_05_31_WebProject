@@ -29,15 +29,41 @@
 		<beans:property name="username" value="dbms"/>
 		<beans:property name="password" value="0000"/>
 	</beans:bean>
-		
+	
+	<!-- 파일 업로드 허용가능한 최대크기 -->
+	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
+		<beans:property value="10485760" name="maxUploadSize"/>
+	</beans:bean>
+	<!-- 공지 이미지 경로 -->
+	<beans:bean class="java.lang.String" id="uploadPath1">
+		<beans:constructor-arg value="C:\spring\workspace\20_05_31_WebProject\src\main\webapp\resources\noticeImege"/>
+	</beans:bean>
+	
+	<!-- Login -->
 	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource"/>
-		<beans:property name="mapperLocations" value="classpath:com/project/dao/*.xml"/>
+		<beans:property name="mapperLocations" value="classpath:com/project/dao/login.xml"/>
 	</beans:bean>
-		
 	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<beans:constructor-arg index="0" ref="sqlSessionFactory"/>
 	</beans:bean>
 	
+	<!-- Notice -->
+	<beans:bean id="sqlSessionFactory1" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource"/>
+		<beans:property name="mapperLocations" value="classpath:com/project/dao/notice.xml"/>
+	</beans:bean>
+	<beans:bean id="sqlSession1" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg index="0" ref="sqlSessionFactory1"/>
+	</beans:bean>
+	
+	<!-- Manager -->
+	<beans:bean id="sqlSessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource"/>
+		<beans:property name="mapperLocations" value="classpath:com/project/dao/managerMode.xml"/>
+	</beans:bean>
+	<beans:bean id="sqlSession2" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg index="0" ref="sqlSessionFactory2"/>
+	</beans:bean>
 	
 </beans:beans>

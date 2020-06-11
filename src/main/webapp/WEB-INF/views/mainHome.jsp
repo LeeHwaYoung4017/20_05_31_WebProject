@@ -44,7 +44,7 @@ $(function(){
 
 </head>
 <body>
-<jsp:include page="../moduleView/mainModule.jsp"/>
+<jsp:include page="./moduleView/mainModule.jsp"/>
 	<div class="swiper-container">
 	    <div class="swiper-wrapper">
 	    	<div class="swiper-slide">

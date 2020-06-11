@@ -4,9 +4,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="${pageContext.request.contextPath}/resources/css/CSSlogin.css" rel="stylesheet" />
 <link href="${pageContext.request.contextPath}/resources/css/CSSmainHome.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style type="text/css">
@@ -42,7 +42,7 @@
 					<span class="border"></span>
 				</label>
 				<label class="form-group">
-					<input type="text" name="password" class="form-control" autocomplete="off">
+					<input type="password" name="password" class="form-control" autocomplete="off">
 					<span for="">Your PASSWORD</span>
 					<span class="border"></span>
 				</label>

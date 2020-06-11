@@ -66,7 +66,7 @@ p {
 .form-group {
   position: relative;
   display: block;
-  margin-bottom: 48px; }
+  margin-bottom: 40px; }
   .form-group span {
     font-size: 15px;
     color: black;
@@ -91,11 +91,11 @@ p {
   font-size: 15px;
   background: none;
   font-family: "Montserrat-SemiBold"; }
-  .form-control:valid {
+  .form-control:focus, .form-control:valid {
     border-bottom: 2px solid #fff; }
-    .form-control:valid + span {
+    .form-control:focus + span, .form-control:valid + span {
       transform: translateY(-22px) scale(0.8); }
-      .border, .form-control:valid + span + .border {
+      .form-control:focus + span + .border, .form-control:valid + span + .border {
         transform: scaleX(1); }
 
 textarea.form-control {
@@ -198,6 +198,7 @@ button {
 .login-wd {
 	margin-left:31%;
 	max-width:40%;
-	
 }
+
+#id_c, #pw_c, #pw_ck, #phone_c{font-size: 10px;}
 
