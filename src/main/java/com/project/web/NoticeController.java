@@ -72,7 +72,7 @@ public class NoticeController {
 		String saveFileName = " ";
 //		사진이 없을 경우
 		if(file.getOriginalFilename().equals("")) {
-			saveFileName = " ";
+			saveFileName = "noimage.jpg";
 			System.out.println(saveFileName);
 		} else {
 			saveFileName = FileUtills.uploadFile(file, uploadPath1, idx);
