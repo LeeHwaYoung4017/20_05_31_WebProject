@@ -8,7 +8,6 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
 public class LoginList {
 	
 	private ArrayList<LoginVO> loginList = new ArrayList<LoginVO>();

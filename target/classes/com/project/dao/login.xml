@@ -24,5 +24,22 @@
 		where 
 		id = #{id}
 	</select>
+	
+	<select id="loginCount" resultType="int">
+		select
+		count(*)
+		from
+		PROJECT_MEMBER
+	</select>
+	
+	<select id="LoginList" parameterType="java.util.HashMap" resultType="com.project.vo.LoginVO">
+		<![CDATA[
+		select * from (
+			select rownum rnum, TT.* from (
+				select * from PROJECT_MEMBER order by idx desc
+			) TT where rownum <= #{end}
+		) where rnum >= #{start}
+		]]>
+	</select>
 
 </mapper>

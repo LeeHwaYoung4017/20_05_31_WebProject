@@ -104,7 +104,7 @@ $(function(){
 							<c:if test="${vo.manager=='manager' }">
 								<li class="sub_menu1"><a href="#">관리하기</a>
 									<ul type="disc" class="sub_menu2">
-										<li><a href="#">회원관리</a></li>
+										<li onclick="location.href='memberList'"><a href="#">회원관리</a></li>
 										<li onclick="location.href='noticeInsert'"><a href="#">공지사항 작성</a></li>
 										<li><a href="#">공지사항 관리하기</a></li>
 										<li><a href="#">분양글 작성</a></li>
