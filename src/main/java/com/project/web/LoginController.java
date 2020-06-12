@@ -3,7 +3,6 @@ package com.project.web;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -36,28 +35,6 @@ public class LoginController {
 	public SqlSession sqlSession;
 	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "mainHome";
-	}
-	
-	@RequestMapping(value="/mainHome")
-	public String mainHome(Model model, HttpServletRequest request) {
-		return "mainHome";
-	}
 	
 	@RequestMapping(value="/login")
 	public String login(Model model, HttpServletRequest request) {
@@ -102,6 +79,12 @@ public class LoginController {
 		return "login/login";
 	}
 	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session, Model model) throws IOException {
+		session.invalidate();
+        return "login/logout";
+	}
+
 	@RequestMapping(value="/join")
 	public String join(Model model, HttpServletRequest request) {
 		return "login/join";
@@ -148,6 +131,7 @@ public class LoginController {
 		logger.info("jusoPopup start");
 		return "login/jusoPopup";
 	}
+	
 	
 
 	

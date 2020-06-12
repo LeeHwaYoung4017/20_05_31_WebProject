@@ -65,7 +65,7 @@ $(function(){
 				<!-- 로그인 상태일 때 표시되는 메뉴 -->
 				<c:if test="${vo.id != null }">
 					<div class="contents_logo_bar2" style="left:76%; font-family: 'Roboto', sans-serif;">
-					    <div class="logos"><a href="mainHome" style="text-decoration: none; color: #FFFFFF;">｜ Logout</a></div>
+					    <div class="logos"><a href="logout" style="text-decoration: none; color: #FFFFFF;">｜ Logout</a></div>
 					</div>
 					<div class="contents_logo_bar2" style="left:81%; font-family: 'Roboto', sans-serif;">
 					    <div class="logos"><a href="#" style="text-decoration: none; color: #FFFFFF;">｜ MyPage</a></div>
@@ -101,6 +101,17 @@ $(function(){
 									<li><a href="#">문의사항</a></li>
 								</ul>
 							</li>
+							<c:if test="${vo.manager=='manager' }">
+								<li class="sub_menu1"><a href="#">관리하기</a>
+									<ul type="disc" class="sub_menu2">
+										<li><a href="#">회원관리</a></li>
+										<li onclick="location.href='noticeInsert'"><a href="#">공지사항 작성</a></li>
+										<li><a href="#">공지사항 관리하기</a></li>
+										<li><a href="#">분양글 작성</a></li>
+										<li><a href="#">분양글 관리하기</a></li>
+									</ul>
+								</li>
+							</c:if>
 						</ul>
 					</div>
 				</div>

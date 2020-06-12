@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +55,14 @@
 </style>
 </head>
 <body>
-<jsp:include page="../moduleView/managerModule.jsp"/>
+<c:if test="${vo.manager!='manager' }">
+<script type="text/javascript">
+	alert('권한이 없습니다.'); 
+	location.href=history.go(-1);
+</script>
+</c:if>
+<jsp:include page="../moduleView/mainModule.jsp"/>
+<c:if test="${vo.manager=='manager' }">
 <div id="wrap">
 	<div id="container">
 		<div class="all">
@@ -67,8 +74,8 @@
 					<form action="uploadForm1" method="post" enctype="multipart/form-data">
 						<table style="width: 100%; height: 100%">
 							<tr>
-								<td align="center" width="50px">제목</td>
-								<td><input type="text" id="title" name="title" style="height: 25px; width: 97%; padding-right: 0; left: 20px; border: none; border-bottom: 2px solid #d4d4d4;"></td>
+								<td align="center" width="5%">제목</td>
+								<td><input type="text" id="title" name="title" style="height: 25px; width: 93%; padding-right: 0; left: 20px; border: none; border-bottom: 2px solid #d4d4d4;"></td>
 							</tr>
 							<tr>
 								<td colspan="2">
@@ -89,6 +96,6 @@
 		</div>
 	</div>
 </div>
-
+</c:if>
 </body>
 </html>

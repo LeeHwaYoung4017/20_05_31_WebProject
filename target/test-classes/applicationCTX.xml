@@ -2,8 +2,11 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-
+	
+	<!-- Login -->
+	<bean id="loginList" class="com.project.vo.LoginList"/>
+	
 	<!-- Notice -->
-	<bean id="noticeList" class="com.project.vo.NoticeList"/> <!-- 기본 생성자로 만든 bean -->
+	<bean id="noticeList" class="com.project.vo.NoticeList"/>
 	
 </beans>

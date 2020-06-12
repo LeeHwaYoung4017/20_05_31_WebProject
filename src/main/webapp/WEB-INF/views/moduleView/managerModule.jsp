@@ -78,23 +78,11 @@ $(function(){
 					<!-- 공지사항 멤버십 관리 고객센터 -->
 					<div id="menu_lists">
 						<ul type="square">
+							<li class="sub_menu1" onclick="location.href='mainHome'"><a href="#">메인화면</a></li>
 							<li class="sub_menu1" onclick="location.href='noticeList'"><a href="#">공지사항</a></li>
-							<li class="sub_menu1"><a href="#">멤버십</a></li>
-							<li class="sub_menu1"><a href="#">관리하기</a>
-								<ul type="disc" class="sub_menu2">
-									<li><a href="#">회원관리</a></li>
-									<li onclick="location.href='noticeInsert'"><a href="#">공지사항 작성</a></li>
-									<li><a href="#">공지사항 관리하기</a></li>
-									<li><a href="#">분양글 작성</a></li>
-									<li><a href="#">분양글 관리하기</a></li>
-								</ul>
-							</li>
-							<li class="sub_menu1"><a href="#">고객센터</a>
-								<ul type="disc" class="sub_menu2">
-									<li><a href="#">회사소개</a></li>
-									<li><a href="#">문의사항</a></li>
-								</ul>
-							</li>
+							<li class="sub_menu1"><a href="#">분양글</a></li>
+							<li class="sub_menu1"><a href="#">회원관리</a></li>
+							<li class="sub_menu1"><a href="#">문의사항</a></li>
 						</ul>
 					</div>
 				</div>

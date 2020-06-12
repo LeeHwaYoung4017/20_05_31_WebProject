@@ -33,7 +33,7 @@
 		height: 5%;
 		float: left;
 		left: 38%;
-		bottom: 1%;
+		bottom: 2%;
 	}
 	
 	ul.noticeMenu {
