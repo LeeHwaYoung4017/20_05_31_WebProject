@@ -5,14 +5,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 import org.springframework.http.MediaType;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.vo.NoticeVO;
-
-
-
 
 //이곳에서는 다른곳에서 다쓸수 있는 목적으로 만드는 메소드는 public static을 넣어줘야한다.
 
