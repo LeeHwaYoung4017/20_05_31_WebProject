@@ -32,17 +32,11 @@ import com.project.vo.LoginVO;
 import com.project.vo.NoticeList;
 import com.project.vo.NoticeVO;
 
-/**
- * Handles requests for the application home page.
- */
-
-
-
 @Controller
 public class NoticeController {
 	
 	@Autowired
-	public SqlSession sqlSession1;
+	public SqlSession sqlSession;
 	
 	@Resource(name= "uploadPath1")
 	private String uploadPath1;
@@ -63,7 +57,7 @@ public class NoticeController {
 	public String uploadForm1POST(HttpServletRequest request, Model model, NoticeVO vo, MultipartFile file) throws IOException {
 		logger.info("noticeOK 실행");
 		
-		noticeDAO mapper = sqlSession1.getMapper(noticeDAO.class);
+		noticeDAO mapper = sqlSession.getMapper(noticeDAO.class);
 		int idx = mapper.noticeIdx();	//현재 notice 시퀸스 값을 알아온다.
 		System.out.println("idx is : " + idx);
 		
@@ -89,7 +83,7 @@ public class NoticeController {
 	@RequestMapping("/noticeList")
 	public String noticeList(HttpServletRequest request, Model model) {
 		logger.info("noticeList 실행");
-		noticeDAO mapper = sqlSession1.getMapper(noticeDAO.class);
+		noticeDAO mapper = sqlSession.getMapper(noticeDAO.class);
 		
 		int pageSize = 8;
 		int currentPage = 1;

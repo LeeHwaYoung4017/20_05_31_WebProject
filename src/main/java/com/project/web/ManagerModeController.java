@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ManagerModeController {
 	
 	@Autowired
-	public SqlSession sqlSession1, sqlSession2;
+	public SqlSession sqlSession;
 	
 	private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);
 	
