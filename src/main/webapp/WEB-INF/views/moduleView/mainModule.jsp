@@ -22,7 +22,14 @@ $(function(){
 	});
 })
 </script>
-
+<style type="text/css">
+	#lines{
+		background-color: #d4d4d4;
+	    position: absolute;
+	    width: 100%;
+	    bottom: -6%;
+	}
+</style>
 </head>
 <body>
 <div id="wrap">
@@ -95,16 +102,17 @@ $(function(){
 										<li onclick="location.href='memberList'"><a href="#">회원관리</a></li>
 										<li onclick="location.href='noticeInsert'"><a href="#">공지사항 작성</a></li>
 										<li><a href="#">공지사항 관리하기</a></li>
-										<li><a href="#">분양글 작성</a></li>
-										<li><a href="#">분양글 관리하기</a></li>
+										<li><a href="#">전시회 작성</a></li>
+										<li><a href="#">전시회 관리하기</a></li>
+										<li><a href="#">메인공지 작성</a></li>
 									</ul>
 								</li>
 							</c:if>
 						</ul>
 					</div>
 				</div>
-				<hr style="background-color: #d4d4d4">
 			</div>
+				<hr id="lines">
 		</div>
 	</div>
 </div>

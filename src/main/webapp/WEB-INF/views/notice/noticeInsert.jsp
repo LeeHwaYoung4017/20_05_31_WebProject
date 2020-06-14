@@ -12,6 +12,7 @@
 		left: 0;
 		top: 0;
 		height: 700px;
+		background-color: #17181b;
 	}
 	.delLine{
 	    position: absolute;
@@ -20,6 +21,7 @@
 	    left: 23%;
 	    height: 90%;
 	    border: 1px solid #d4d4d4;
+	    background-color: white;
 	}
 	#title{
 		position: relative;
@@ -29,7 +31,7 @@
 		height: 8%;
 	}
 	h1{
-		color: #eb0045;
+		color: #17181b;
 	}
 	titleFont{
 	    font-family: 'Noto Sans KR',sans-serif;

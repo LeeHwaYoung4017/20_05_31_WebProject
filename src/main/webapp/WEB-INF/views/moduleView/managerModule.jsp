@@ -25,19 +25,7 @@ $(function(){
 <div id="wrap">
 	<div id="container">
 		<div id="top_fixed_bar">
-			<div id="top_contents" style="background-color: #eb0045;">
-				<div class="contents_logo_bar" onclick="window.open('https://pf.kakao.com/','NewWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,width=550,height=800')" style="left:60%;">
-				    <div class="logos"><img src="http://centumcode2.cafe24.com/image/kakao-4.png" width="100%"></div>
-				</div>
-				<div class="contents_logo_bar" onclick="window.open('https://www.youtube.com/','NewWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,width=550,height=800')" style="left:63%; border:1px solid #fd0000;">
-				    <div class="logos"><img src="http://centumcode2.cafe24.com/image/youtube-4.png" width="100%"></div>
-				</div>
-				<div class="contents_logo_bar" onclick="window.open('https://blog.naver.com/','NewWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,width=550,height=800')" style="left:66%;">
-				    <div class="logos"><img src="http://centumcode2.cafe24.com/image/naver-3.png" width="100%"></div>
-				</div>
-				<div class="contents_logo_bar" onclick="window.open('https://www.instagram.com/?hl=ko','NewWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,width=550,height=800')" style="left:69%;">
-				    <div class="logos"><img src="http://centumcode2.cafe24.com/image/instagram.png" width="100%"></div>
-				</div>
+			<div id="top_contents" style="background-color: #17181b">
 				<!-- LoginVO의 manager 값이 manager일 시 아래 메뉴를 추가한다. -->
 				<c:if test="${vo.manager=='manager' }">
 					<div class="contents_logo_bar2" style="left:3%; font-family: 'Roboto', sans-serif;">

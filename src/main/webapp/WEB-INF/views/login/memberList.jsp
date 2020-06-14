@@ -29,7 +29,7 @@
 			<div class="allLine">
 				<div class="subjectLine">
 					<table border="1" cellspacing="0" style="width: 100%; border: 1px solid #d4d4d4;">
-						<tr>
+						<tr height="10px">
 							<td width="5%" align="center">번호</td>
 							<td width="10%" align="center">아이디</td>
 							<td width="10%" align="center">핸드폰</td>
@@ -40,13 +40,13 @@
 						<c:set value="${loginList.loginList}" var="list"/>
 						<c:forEach var="vo" items="${list}">
 							<tr>
-								<td></td>
+								<td align="center">${vo.idx}</td>
 								<td>${vo.id }</td>
 								<td>${vo.phone }</td>
 								<td>${vo.email }</td>
 								<td>${vo.address }</td>
 								<td>
-									<input type="button" value="수정하기">
+									<input type="button" value="수정하기"  onclick="location.href='memberUpdate?id=${vo.id}&phone=${vo.phone}&email=${vo.email}&address=${vo.address}'">
 									<input type="button" value="삭제하기">
 									<input type="button" value="권한추가">
 								</td>

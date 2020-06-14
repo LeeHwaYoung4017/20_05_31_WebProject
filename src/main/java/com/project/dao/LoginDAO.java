@@ -12,6 +12,7 @@ public interface LoginDAO {
 	LoginVO selectById(String id);
 	int loginCount();		//전체 회원 갯수
 	ArrayList<LoginVO> LoginList(HashMap<String, Integer> hm);	//전체 회원 정보
+	void memberUpdate(LoginVO vo);	//회원정보 변경
 
 
 	

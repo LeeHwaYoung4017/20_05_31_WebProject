@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class LoginVO {
 	
+	private int idx;			//번호
 	private String id;			//아이디
 	private String password;	//비밀번호
 	private String phone;		//핸드폰번호

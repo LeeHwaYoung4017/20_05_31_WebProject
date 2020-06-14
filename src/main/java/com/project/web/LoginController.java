@@ -159,6 +159,21 @@ public class LoginController {
 		return "login/memberList";
 	}
 	
+	@RequestMapping("/memberUpdate")
+	public String memberUpdate(HttpSession request) {
+		return "login/memberUpdate";
+	}
+	
+	@RequestMapping("/memberUpdateOK")
+	public String memberUpdateOK(HttpServletRequest request, LoginVO vo) {
+		logger.info("memberUpdateOK 실행");
+		LoginDAO mapper = sqlSession.getMapper(LoginDAO.class);
+		vo.setAddress(request.getParameter("userAddr"));
+		mapper.memberUpdate(vo);
+		
+		return "login/login";
+	}
+	
 	
 
 	

@@ -41,5 +41,14 @@
 		) where rnum >= #{start}
 		]]>
 	</select>
+	
+	<update id="memberUpdate" parameterType="com.project.vo.LoginVO">
+		update
+		PROJECT_MEMBER
+		set
+		password = #{password}, phone = #{phone}, address = #{address}, email = #{email}
+		where
+		id = #{id}
+	</update>
 
 </mapper>
