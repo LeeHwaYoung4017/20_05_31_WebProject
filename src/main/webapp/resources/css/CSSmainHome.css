@@ -85,7 +85,7 @@ body {
 	height:35px;
 	border-radius:50%;
 	overflow:hidden;
-	background:#eb0045"
+	background:#17181b"
 }
 .contents_logo_bar2 {
 	z-index:9999;
@@ -93,7 +93,7 @@ body {
 	position:fixed;
 	top:1.6%;
 	overflow:hidden;
-	background:#eb0045;
+	background:#17181b;
 }
 
 /* .contents_logo {
@@ -151,7 +151,7 @@ li a:hover {text-decoration:none;}
 
 .sub_menu1 a {
 	font-weight: bold;
-    color: #eb0045;
+    color: #17181b;
 }
 
 
