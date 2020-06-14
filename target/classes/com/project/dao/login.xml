@@ -50,5 +50,12 @@
 		where
 		id = #{id}
 	</update>
+	
+	<delete id="memberDelete" parameterType="String">
+		delete
+		from PROJECT_MEMBER
+		where
+		id = #{id}
+	</delete>
 
 </mapper>

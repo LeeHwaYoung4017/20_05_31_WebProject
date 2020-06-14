@@ -168,6 +168,17 @@ public class LoginController {
 		return "login/login";
 	}
 	
+	@RequestMapping("/memberDelete")
+	public String memberDelete(HttpServletRequest request) {
+		logger.info("memberDelete 실행");
+		LoginDAO mapper = sqlSession.getMapper(LoginDAO.class);
+		String id = request.getParameter("id");
+		
+		mapper.memberDelete(id);
+		
+		return "login/login";
+	}
+	
 	
 
 	

@@ -46,8 +46,8 @@
 								<td>${vo.email }</td>
 								<td>${vo.address }</td>
 								<td>
-									<input type="button" value="수정하기"  onclick="location.href='memberUpdate?id=${vo.id}&phone=${vo.phone}&email=${vo.email}&address=${vo.address}'">
-									<input type="button" value="삭제하기">
+									<input type="button" value="수정하기" onclick="location.href='memberUpdate?id=${vo.id}&phone=${vo.phone}&email=${vo.email}&address=${vo.address}'">
+									<input type="button" value="삭제하기" onclick="location.href='memberDelete?id=${vo.id}'">
 									<input type="button" value="권한추가">
 								</td>
 							</tr>
