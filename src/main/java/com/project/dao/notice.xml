@@ -4,7 +4,11 @@
 <mapper namespace="com.project.dao.noticeDAO">
 	 
 	<select id="noticeIdx" resultType="int">
-		select count(*) from PROJECT_NOTICE
+		SELECT 
+		last_number
+		from user_sequences
+		where
+		sequence_name = 'PROJECT_NOTICE_IDX_SEQ'
 	</select>
 	
 	<insert id="noticeInsert" parameterType="com.project.vo.NoticeVO">
@@ -25,8 +29,8 @@
 			select * from(
 				select rownum rnum, AA.* from (
 					select * from PROJECT_NOTICE order by idx desc
-				)AA where rownum <= #{endNo}
-			) where rnum >= #{startNo}
+				)AA where rownum <= #{end}
+			) where rnum >= #{start}
 		]]>
 	</select>
 	
