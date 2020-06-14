@@ -54,7 +54,7 @@ $(function(){
 	          <img src="${pageContext.request.contextPath }/resources/image/banner2.jpg">
 	     	</div>
 	     	<div class="swiper-slide">
-	          <img src="${pageContext.request.contextPath }/resources/image/banner3.jpg">
+	          <img src="${pageContext.request.contextPath }/resources/image/banner3.png">
 	    	</div>
 	    </div>
 	      <!-- If we need pagination -->

@@ -28,19 +28,7 @@ $(function(){
 <div id="wrap">
 	<div id="container">
 		<div id="top_fixed_bar">
-			<div id="top_contents" style="background-color: #eb0045;">
-				<div class="contents_logo_bar" onclick="window.open('https://pf.kakao.com/','NewWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,width=550,height=800')" style="left:60%;">
-				    <div class="logos"><img src="http://centumcode2.cafe24.com/image/kakao-4.png" width="100%"></div>
-				</div>
-				<div class="contents_logo_bar" onclick="window.open('https://www.youtube.com/','NewWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,width=550,height=800')" style="left:63%; border:1px solid #fd0000;">
-				    <div class="logos"><img src="http://centumcode2.cafe24.com/image/youtube-4.png" width="100%"></div>
-				</div>
-				<div class="contents_logo_bar" onclick="window.open('https://blog.naver.com/','NewWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,width=550,height=800')" style="left:66%;">
-				    <div class="logos"><img src="http://centumcode2.cafe24.com/image/naver-3.png" width="100%"></div>
-				</div>
-				<div class="contents_logo_bar" onclick="window.open('https://www.instagram.com/?hl=ko','NewWindow','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=no,copyhistory=no,width=550,height=800')" style="left:69%;">
-				    <div class="logos"><img src="http://centumcode2.cafe24.com/image/instagram.png" width="100%"></div>
-				</div>
+			<div id="top_contents" style="background-color: #17181b;">
 				<!-- LoginVO의 manager 값이 manager일 시 아래 메뉴를 추가한다. -->
 				<c:if test="${vo.manager=='manager' }">
 					<div class="contents_logo_bar2" style="left:3%; font-family: 'Roboto', sans-serif;">
@@ -65,7 +53,7 @@ $(function(){
 				<!-- 로그인 상태일 때 표시되는 메뉴 -->
 				<c:if test="${vo.id != null }">
 					<div class="contents_logo_bar2" style="left:76%; font-family: 'Roboto', sans-serif;">
-					    <div class="logos"><a href="mainHome" style="text-decoration: none; color: #FFFFFF;">｜ Logout</a></div>
+					    <div class="logos"><a href="logout" style="text-decoration: none; color: #FFFFFF;">｜ Logout</a></div>
 					</div>
 					<div class="contents_logo_bar2" style="left:81%; font-family: 'Roboto', sans-serif;">
 					    <div class="logos"><a href="#" style="text-decoration: none; color: #FFFFFF;">｜ MyPage</a></div>
@@ -82,17 +70,17 @@ $(function(){
 					<div id="menu_lists">
 						<ul type="square">
 							<li class="sub_menu1" onclick="location.href='noticeList'"><a href="#">공지사항</a></li>
-							<li class="sub_menu1"><a href="#">멤버십</a></li>
-							<li class="sub_menu1"><a href="#">분양</a>
+							<li class="sub_menu1"><a href="#">커뮤니티</a>
 								<ul type="disc" class="sub_menu2">
-									<li><a href="#">강아지</a></li>
-									<li><a href="#">고양이</a></li>
+									<li><a href="#">IT행사</a></li>
+									<li><a href="#">언어</a></li>
+									<li><a href="#">잡담</a></li>
 								</ul>
 							</li>
-							<li class="sub_menu1"><a href="#">이벤트</a>
+							<li class="sub_menu1"><a href="#">전시회</a>
 								<ul type="disc" class="sub_menu2">
-									<li><a href="#">진행중 이벤트</a></li>
-									<li><a href="#">종료 이벤트</a></li>
+									<li><a href="#">진행중</a></li>
+									<li><a href="#">종료</a></li>
 								</ul>
 							</li>
 							<li class="sub_menu1"><a href="#">고객센터</a>
@@ -101,6 +89,17 @@ $(function(){
 									<li><a href="#">문의사항</a></li>
 								</ul>
 							</li>
+							<c:if test="${vo.manager=='manager' }">
+								<li class="sub_menu1"><a href="#">관리하기</a>
+									<ul type="disc" class="sub_menu2">
+										<li onclick="location.href='memberList'"><a href="#">회원관리</a></li>
+										<li onclick="location.href='noticeInsert'"><a href="#">공지사항 작성</a></li>
+										<li><a href="#">공지사항 관리하기</a></li>
+										<li><a href="#">분양글 작성</a></li>
+										<li><a href="#">분양글 관리하기</a></li>
+									</ul>
+								</li>
+							</c:if>
 						</ul>
 					</div>
 				</div>

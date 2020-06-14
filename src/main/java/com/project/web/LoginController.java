@@ -2,9 +2,7 @@ package com.project.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,12 +12,14 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.dao.LoginDAO;
+import com.project.vo.LoginList;
 import com.project.vo.LoginVO;
 
 @Controller
@@ -29,25 +29,6 @@ public class LoginController {
 	public SqlSession sqlSession;
 	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "mainHome";
-	}
-	
-	@RequestMapping(value="/mainHome")
-	public String mainHome(Model model, HttpServletRequest request) {
-		return "mainHome";
-	}
 	
 	@RequestMapping(value="/login")
 	public String login(Model model, HttpServletRequest request) {
@@ -92,6 +73,12 @@ public class LoginController {
 		return "login/login";
 	}
 	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session, Model model) throws IOException {
+		session.invalidate();
+        return "login/logout";
+	}
+
 	@RequestMapping(value="/join")
 	public String join(Model model, HttpServletRequest request) {
 		return "login/join";
@@ -138,6 +125,29 @@ public class LoginController {
 		logger.info("jusoPopup start");
 		return "login/jusoPopup";
 	}
+	
+//	회원 리스트
+	@RequestMapping("/memberList")
+	public String memberList(Model model) {
+		logger.info("memberList start");
+		LoginDAO mapper = sqlSession.getMapper(LoginDAO.class);
+		int LoginCount = mapper.loginCount();	//전체 회원 정보 개수
+		System.out.println(LoginCount);
+		HashMap<String, Integer> hm = new HashMap<String, Integer>();
+		int start = 0;	//첫 글
+		hm.put("start", start);
+		hm.put("end", LoginCount);
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext("classpath:applicationCTX.xml");
+		
+		LoginList loginList = ctx.getBean("loginList", LoginList.class);
+		loginList.setLoginList(mapper.LoginList(hm));	//전체 회원 정보
+		System.out.println("loginList Clear");
+		
+		model.addAttribute("loginList", loginList);		//전체 회원 정보를 memberList.jsp 로 보낸다
+		
+		return "login/memberList";
+	}
+	
 	
 
 	

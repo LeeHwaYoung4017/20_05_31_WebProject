@@ -30,6 +30,15 @@
 		<beans:property name="password" value="0000"/>
 	</beans:bean>
 	
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource"></beans:property>
+		<beans:property name="mapperLocations" value="classpath:com/project/**/*.xml"></beans:property>
+	</beans:bean>
+		
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg index="0" ref="sqlSessionFactory"></beans:constructor-arg>
+	</beans:bean>
+	
 	<!-- 파일 업로드 허용가능한 최대크기 -->
 	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
 		<beans:property value="10485760" name="maxUploadSize"/>
@@ -38,15 +47,6 @@
 	<!-- 공지 이미지 경로 -->
 	<beans:bean class="java.lang.String" id="uploadPath1">
 		<beans:constructor-arg value="C:\Users\CHOYEJI\git\20_05_31_WebProject\src\main\webapp\resources\noticeImege"/>
-	</beans:bean>
-	
-	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<beans:property name="dataSource" ref="dataSource"></beans:property>
-		<beans:property name="mapperLocations" value="classpath:com/project/**/*.xml"></beans:property>
-	</beans:bean>
-		
-	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-		<beans:constructor-arg index="0" ref="sqlSessionFactory"></beans:constructor-arg>
 	</beans:bean>
 	
 </beans:beans>

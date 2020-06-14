@@ -46,7 +46,6 @@ public class NoticeController {
 	@RequestMapping("/noticeInsert")
 	public String noticeInsert(HttpServletRequest request, Model model) {
 		logger.info("noticeInsert 실행");
-		
 		return "notice/noticeInsert";
 	}
 	
@@ -66,7 +65,7 @@ public class NoticeController {
 		String saveFileName = " ";
 //		사진이 없을 경우
 		if(file.getOriginalFilename().equals("")) {
-			saveFileName = " ";
+			saveFileName = "noimage.jpg";
 			System.out.println(saveFileName);
 		} else {
 			saveFileName = FileUtills.uploadFile(file, uploadPath1, idx);
@@ -99,8 +98,8 @@ public class NoticeController {
 		noticeList.initNoticeList(pageSize, totalCount, currentPage);
 		
 		HashMap<String, Integer> hm = new HashMap<String, Integer>();
-		hm.put("startNo", noticeList.getStartNo());
-		hm.put("endNo", noticeList.getEndNo());
+		hm.put("start", noticeList.getStartNo());
+		hm.put("end", noticeList.getEndNo());
 		System.out.println(hm);
 		noticeList.setNoticeList(mapper.noticeList(hm));
 		
