@@ -27,12 +27,6 @@ import com.project.dao.LoginDAO;
 import com.project.vo.LoginList;
 import com.project.vo.LoginVO;
 
-/**
- * Handles requests for the application home page.
- */
-
-
-
 @Controller
 public class LoginController {
 	

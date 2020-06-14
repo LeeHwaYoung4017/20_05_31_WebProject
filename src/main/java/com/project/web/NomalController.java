@@ -19,13 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class NomalController {
 	
 	@Autowired
-	public SqlSession sqlSession1, sqlSession2;
+	public SqlSession sqlSession;
 	
 	private static final Logger logger = LoggerFactory.getLogger(NoticeController.class);
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
