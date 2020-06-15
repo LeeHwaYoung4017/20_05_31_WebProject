@@ -46,7 +46,12 @@
 	
 	<!-- 공지 이미지 경로 -->
 	<beans:bean class="java.lang.String" id="uploadPath1">
-		<beans:constructor-arg value="C:\Users\CHOYEJI\git\20_05_31_WebProject\src\main\webapp\resources\noticeImege"/>
+		<beans:constructor-arg value="C:\spring\workspace\20_05_31_WebProject\src\main\webapp\resources\noticeImege"/>
+	</beans:bean>
+	
+	<!-- 커뮤니티 이미지 경로 -->
+	<beans:bean class="java.lang.String" id="uploadPath2">
+		<beans:constructor-arg value="C:\spring\workspace\20_05_31_WebProject\src\main\webapp\resources\communityImage"/>
 	</beans:bean>
 	
 </beans:beans>

@@ -77,7 +77,7 @@ $(function(){
 					<div id="menu_lists">
 						<ul type="square">
 							<li class="sub_menu1" onclick="location.href='noticeList'"><a href="#">공지사항</a></li>
-							<li class="sub_menu1"><a href="#">커뮤니티</a>
+							<li class="sub_menu1" ondblclick="location.href='communityInsert'"><a href="#">커뮤니티</a>
 								<ul type="disc" class="sub_menu2">
 									<li><a href="#">IT행사</a></li>
 									<li><a href="#">언어</a></li>
