@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.dao.communityDAO">
+	
+	<select id="communityIdx" resultType="int">
+		SELECT
+		last_number
+		from user_sequences
+		where
+		sequence_name = 'PROJECT_COMMUNITY_IDX_SEQ'
+	</select>
+	
+	<insert id="communityInsert" parameterType="com.project.vo.CommunityVO">
+		INSERT
+		into PROJECT_COMMUNITY
+		(IDX, TITLE, PASSWORD, CATEGORY, CONTENT, FILENAME)
+		values
+		(PROJECT_COMMUNITY_IDX_SEQ.NEXTVAL, #{title}, #{password}, #{category}, #{content}, #{fileName})
+	</insert>
+
+</mapper>
