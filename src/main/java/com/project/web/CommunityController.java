@@ -95,6 +95,24 @@ public class CommunityController {
 		
 		return "community/communityList";
 	}
+	
+	@RequestMapping("/communitySubList")
+	public String communityEventList(HttpServletRequest request, Model model) {
+		logger.info("communitySubList 실행");
+		communityDAO mapper = sqlSession.getMapper(communityDAO.class);
+		
+		int pageSize = 8;
+		int currentPage = 1;
+		try {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}catch (Exception e) {}
+		int totalCount = mapper.communityEventCount(); //IT행사 글을 뽑아온다
+		logger.info("currentPage is = " + currentPage);
+		logger.info("totalCount is = " + totalCount);
+		
+		
+		return "community/communitySubList";
+	}
 
 	
 	

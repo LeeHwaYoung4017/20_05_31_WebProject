@@ -79,7 +79,7 @@ $(function(){
 							<li class="sub_menu1" onclick="location.href='noticeList'"><a href="#">공지사항</a></li>
 							<li class="sub_menu1" ondblclick="location.href='communityInsert'"><a href="#">커뮤니티</a>
 								<ul type="disc" class="sub_menu2">
-									<li><a href="#">IT행사</a></li>
+									<li onclick="location.href='communitySubList?category=${1}'"><a href="#">IT행사</a></li>
 									<li><a href="#">언어</a></li>
 									<li><a href="#">잡담</a></li>
 								</ul>
