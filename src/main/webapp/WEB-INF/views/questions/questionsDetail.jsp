@@ -25,7 +25,7 @@
 		<th>내용</th>
 		<td><textarea rows="10" cols="50" readonly>${questionsVO.content }</textarea> </td>
 	</tr>
-	<c:if test="${sessionScope.vo.id eq (questionsVO.writer)}">
+	<c:if test="${(sessionScope.vo.id) eq (questionsVO.writer) || (sessionScope.vo.manager) eq ('manager')}">
 	<tr>
 		<td><input type="button" value="삭제" onclick="location.href='questionsDelete?idx=${questionsVO.idx}'"> </td>
 	</tr>

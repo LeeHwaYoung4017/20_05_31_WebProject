@@ -77,10 +77,10 @@
 						        <td>${status.count }</td>
 						        <c:choose>
 						        	<c:when test="${item.secret != null}">
-						        		<c:if test="${item.writer != sessionScope.vo.id }">
+						        		<c:if test="${item.writer != sessionScope.vo.id && sessionScope.vo.manager ne ('manager')}">
 						        		<td><img alt="잠긴자물쇠" src="resources/image/secret.png" width="20px" align="left"> 비밀글입니다.</td>
 						        		</c:if>
-						        		<c:if test="${item.writer == sessionScope.vo.id }">
+						        		<c:if test="${item.writer == sessionScope.vo.id || sessionScope.vo.manager eq ('manager')}">
 						        		<td><a href="questionsDetail?idx=${item.idx }">
 						        		<img alt="열린자물쇠" src="resources/image/openSecret.png" width="20px" align="left">${item.title }
 						        		</a></td>
