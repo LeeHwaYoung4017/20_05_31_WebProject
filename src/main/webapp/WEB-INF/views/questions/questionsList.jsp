@@ -74,7 +74,9 @@
 							  <c:if test="${list.size() > 0}">
 							  <c:forEach var="item" items="${list}" varStatus="status">
 						      <tr>
-						        <td>${status.count }</td>
+						        <td>
+						        ${questionsList.totalCount - ((questionsList.currentPage - 1) * questionsList.pageSize + status.index) }
+						        </td>
 						        <c:choose>
 						        	<c:when test="${item.secret != null}">
 						        		<c:if test="${item.writer != sessionScope.vo.id && sessionScope.vo.manager ne ('manager')}">
