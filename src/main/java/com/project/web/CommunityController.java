@@ -12,13 +12,17 @@ import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dao.communityDAO;
+import com.project.vo.CommunityList;
 import com.project.vo.CommunityVO;
 
 @Controller
@@ -66,6 +70,34 @@ public class CommunityController {
 			return "redirect:communityInsert";
 		}
 	}
+	
+	@RequestMapping("/communityList")
+	public String communityList(HttpServletRequest request, Model model) {
+		logger.info("communityList 실행");
+		communityDAO mapper = sqlSession.getMapper(communityDAO.class);
+		int pageSize = 20;
+		int currentPage = 1;
+		try {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}catch (Exception e) {}
+		int totalCount = mapper.communityCount();
+		logger.info("totalCount is = " + totalCount);
+		
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext("classpath:applicationCTX.xml");
+		CommunityList communityList = ctx.getBean("communityList",CommunityList.class);
+		communityList.initCommunityList(pageSize, totalCount, currentPage);
+		
+		HashMap<String, Integer> hm = new HashMap<String, Integer>();
+		hm.put("start", communityList.getStartNo());
+		hm.put("end", communityList.getEndNo());
+		System.out.println(hm);
+		communityList.setCommunityList(mapper.communityList(hm));
+		
+		model.addAttribute("communityList", communityList);
+		
+		return "community/communityList";
+	}
+
 	
 	
 	

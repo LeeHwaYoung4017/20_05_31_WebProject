@@ -18,5 +18,21 @@
 		values
 		(PROJECT_COMMUNITY_IDX_SEQ.NEXTVAL, #{title}, #{password}, #{category}, #{content}, #{fileName})
 	</insert>
+	
+	<select id="communityCount" resultType="int">
+		SELECT
+		count(*)
+		from PROJECT_COMMUNITY
+	</select>
+	
+	<select id="communityList" parameterType="java.util.HashMap" resultType="com.project.vo.CommunityVO">
+		<![CDATA[
+			select * from(
+				select rownum rnum, AA.* from(
+					select * from PROJECT_COMMUNITY order by idx desc
+				)AA where rownum <= #{end}
+			) where rnum >= #{start}
+		]]>
+	</select>
 
 </mapper>
