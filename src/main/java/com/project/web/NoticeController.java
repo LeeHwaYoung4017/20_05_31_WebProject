@@ -38,6 +38,9 @@ public class NoticeController {
 	@Autowired
 	public SqlSession sqlSession;
 	
+	@Autowired
+	private NoticeList noticeList;
+	
 	@Resource(name= "uploadPath1")
 	private String uploadPath1;
 	
@@ -52,7 +55,7 @@ public class NoticeController {
 	@RequestMapping(value = "/uploadForm1", method = RequestMethod.GET)
 	public void uploadForm1GET(Model model){}
 	
-	@RequestMapping(value = "/uploadForm1", method = RequestMethod.POST)
+	@RequestMapping(value = "/uploadForm1")
 	public String uploadForm1POST(HttpServletRequest request, Model model, NoticeVO vo, MultipartFile file) throws IOException {
 		logger.info("noticeOK 실행");
 		
@@ -93,8 +96,6 @@ public class NoticeController {
 		logger.info("currentPage is : " + currentPage);
 		logger.info("totalCount is : " + totalCount);
 		
-		AbstractApplicationContext ctx = new GenericXmlApplicationContext("classpath:applicationCTX.xml");
-		NoticeList noticeList = ctx.getBean("noticeList", NoticeList.class);
 		noticeList.initNoticeList(pageSize, totalCount, currentPage);
 		
 		HashMap<String, Integer> hm = new HashMap<String, Integer>();

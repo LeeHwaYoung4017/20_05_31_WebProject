@@ -11,14 +11,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>
 	
-	function idcheck() {
-		var id = document.getElementById("id").value;
-		var url = "./idCheck";
-		var title = "idCheck";
-		var option = "top=200, left=300, width=450px, height=150px, scrollbar=no, resizable=no";
-		window.open(url,title,option);
-	}
-	
 	//아이디체크(아작스)
 	var idRequest = new XMLHttpRequest();
 	function checkID(){
