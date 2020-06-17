@@ -86,7 +86,7 @@ $(function(){
 							<li class="sub_menu1"><a href="#">고객센터</a>
 								<ul type="disc" class="sub_menu2">
 									<li><a href="#">회사소개</a></li>
-									<li><a href="#">문의사항</a></li>
+									<li onclick="location.href='questionsList?page=1'"><a href="questionsList?page=1">문의사항</a></li>
 								</ul>
 							</li>
 							<c:if test="${vo.manager=='manager' }">

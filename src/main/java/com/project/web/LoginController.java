@@ -74,18 +74,18 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/logout")
-	public String logout(HttpSession session, Model model) throws IOException {
+	public String logout(HttpSession session) {
 		session.invalidate();
         return "login/logout";
 	}
 
 	@RequestMapping(value="/join")
-	public String join(Model model, HttpServletRequest request) {
+	public String join() {
 		return "login/join";
 	}
 	
 	@RequestMapping(value="/joinOK")
-	public String joinOK(Model model, HttpServletRequest request,  HttpServletResponse response, LoginVO vo) throws IOException {
+	public String joinOK(Model model, HttpServletRequest request, LoginVO vo) throws IOException {
 		logger.info("joinOK 실행");
 		LoginDAO mapper = sqlSession.getMapper(LoginDAO.class);
 		vo.setAddress(request.getParameter("userAddr"));
@@ -147,8 +147,5 @@ public class LoginController {
 		
 		return "login/memberList";
 	}
-	
-	
-
 	
 }
