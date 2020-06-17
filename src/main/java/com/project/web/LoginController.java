@@ -28,6 +28,9 @@ public class LoginController {
 	@Autowired
 	public SqlSession sqlSession;
 	
+	@Autowired
+	private LoginList loginList;
+	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 	
 	@RequestMapping(value="/login")
@@ -137,9 +140,7 @@ public class LoginController {
 		int start = 0;	//첫 글
 		hm.put("start", start);
 		hm.put("end", LoginCount);
-		AbstractApplicationContext ctx = new GenericXmlApplicationContext("classpath:applicationCTX.xml");
 		
-		LoginList loginList = ctx.getBean("loginList", LoginList.class);
 		loginList.setLoginList(mapper.LoginList(hm));	//전체 회원 정보
 		System.out.println("loginList Clear");
 		

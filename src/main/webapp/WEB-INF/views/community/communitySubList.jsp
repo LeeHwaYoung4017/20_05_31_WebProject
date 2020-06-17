@@ -147,6 +147,8 @@
 							<input type="button" value="다음" disabled="disabled" title="마지막 페이지 입니다.">
 							<input type="button" value="마지막" disabled="disabled" title="다음 10페이지가 없습니다.">
 						</c:if>
+						
+						<input type="button" value="작성하기" onclick="location.href='communityInsert'" style="float: right;">
 					</div>	
 				</div>
 			</div>

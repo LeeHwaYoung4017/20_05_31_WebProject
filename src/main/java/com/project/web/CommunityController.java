@@ -84,8 +84,6 @@ public class CommunityController {
 		int totalCount = mapper.communityCount();
 		logger.info("totalCount is = " + totalCount);
 		
-		AbstractApplicationContext ctx = new GenericXmlApplicationContext("classpath:applicationCTX.xml");
-		CommunityList communityList = ctx.getBean("communityList",CommunityList.class);
 		communityList.initCommunityList(pageSize, totalCount, currentPage);
 		
 		HashMap<String, Integer> hm = new HashMap<String, Integer>();
