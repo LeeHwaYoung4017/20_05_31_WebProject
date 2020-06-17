@@ -2,10 +2,7 @@ package com.project.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,12 +13,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.AbstractApplicationContext;
-import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.dao.LoginDAO;
 import com.project.vo.LoginList;
@@ -79,18 +74,18 @@ public class LoginController {
 	}
 	
 	@RequestMapping("/logout")
-	public String logout(HttpSession session, Model model) throws IOException {
+	public String logout(HttpSession session) {
 		session.invalidate();
         return "login/logout";
 	}
 
 	@RequestMapping(value="/join")
-	public String join(Model model, HttpServletRequest request) {
+	public String join() {
 		return "login/join";
 	}
 	
 	@RequestMapping(value="/joinOK")
-	public String joinOK(Model model, HttpServletRequest request,  HttpServletResponse response, LoginVO vo) throws IOException {
+	public String joinOK(Model model, HttpServletRequest request, LoginVO vo) throws IOException {
 		logger.info("joinOK 실행");
 		LoginDAO mapper = sqlSession.getMapper(LoginDAO.class);
 		vo.setAddress(request.getParameter("userAddr"));
@@ -178,8 +173,5 @@ public class LoginController {
 		
 		return "login/login";
 	}
-	
-	
-
 	
 }
