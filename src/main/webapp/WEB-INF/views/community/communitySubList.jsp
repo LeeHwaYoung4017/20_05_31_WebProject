@@ -100,7 +100,7 @@
 									<!-- 이미지 -->
 									<div class="imgs">
 										<a class="aSize" href="#">
-											<img src="${pageContext.request.contextPath}/resources/communityImege/${vo.fileName}">
+											<img src="${pageContext.request.contextPath}/resources/communityImage/${vo.fileName}">
 										</a>
 									</div>
 									<!-- 제목 -->

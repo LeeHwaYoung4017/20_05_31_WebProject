@@ -29,6 +29,9 @@ public class CommunityController {
 	@Autowired
 	public SqlSession sqlSession;
 	
+	@Autowired
+	private CommunityList communityList;
+	
 	@Resource(name="uploadPath2")
 	private String uploadPath2;
 	
@@ -112,8 +115,6 @@ public class CommunityController {
 		logger.info("currentPage is = " + currentPage);
 		logger.info("totalCount is = " + totalCount);
 		
-		AbstractApplicationContext ctx = new GenericXmlApplicationContext("classpath:applicationCTX.xml");
-		CommunityList communityList = ctx.getBean("communityList",CommunityList.class);
 		communityList.initCommunityList(pageSize, totalCount, currentPage);
 		logger.info("communityList.initCommunityList 실행 완료");
 		
