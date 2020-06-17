@@ -103,15 +103,31 @@ public class CommunityController {
 		logger.info("communitySubList 실행");
 		communityDAO mapper = sqlSession.getMapper(communityDAO.class);
 		
+		String categoryNum = request.getParameter("category");
+		
 		int pageSize = 8;
 		int currentPage = 1;
 		try {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}catch (Exception e) {}
-		int totalCount = mapper.communityEventCount(); //IT행사 글을 뽑아온다
+		int totalCount = mapper.communityEventCount(categoryNum); //IT행사 글을 뽑아온다
 		logger.info("currentPage is = " + currentPage);
 		logger.info("totalCount is = " + totalCount);
 		
+		AbstractApplicationContext ctx = new GenericXmlApplicationContext("classpath:applicationCTX.xml");
+		CommunityList communityList = ctx.getBean("communityList",CommunityList.class);
+		communityList.initCommunityList(pageSize, totalCount, currentPage);
+		logger.info("communityList.initCommunityList 실행 완료");
+		
+		HashMap<String, Integer> hm = new HashMap<String, Integer>();
+		hm.put("start", communityList.getStartNo());
+		hm.put("end", communityList.getEndNo());
+		hm.put("categoryNum", Integer.parseInt(request.getParameter("category")));
+		System.out.println(hm);
+		
+		communityList.setCommunityList(mapper.communitySubList(hm));
+		
+		model.addAttribute("communityList", communityList);
 		
 		return "community/communitySubList";
 	}

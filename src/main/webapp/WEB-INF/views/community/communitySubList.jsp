@@ -87,7 +87,7 @@
 </head>
 <body>
 <jsp:include page="../moduleView/mainModule.jsp"/>
-<c:set var="list" value="${noticeList.noticeList}"/>
+<c:set var="list" value="${communityList.communityList}"/>
 	<div id="wrap">
 		<div id="container">
 			<div class="all">
@@ -100,7 +100,7 @@
 									<!-- 이미지 -->
 									<div class="imgs">
 										<a class="aSize" href="#">
-											<img src="${pageContext.request.contextPath}/resources/noticeImege/${vo.fileName}">
+											<img src="${pageContext.request.contextPath}/resources/communityImege/${vo.fileName}">
 										</a>
 									</div>
 									<!-- 제목 -->
@@ -115,35 +115,35 @@
 					</div>
 					<div class="bottomLine">
 						<!-- 이전 페이지 -->
-						<c:if test="${noticeList.startPage > 1}">
+						<c:if test="${communityList.startPage > 1}">
 							<input type="button" value="시작" onclick="location.href='?currentPage=1'" title="첫 페이지"/>
-							<input type="button" value="이전" onclick="location.href='?currentPage=${noticeList.startPage -1}'">
+							<input type="button" value="이전" onclick="location.href='?currentPage=${communityList.startPage -1}'">
 						</c:if>
 						<!-- 이전 페이지가 존재하지 않을경우 -->
-						<c:if test="${noticeList.startPage <= 1}">
+						<c:if test="${communityList.startPage <= 1}">
 							<input type="button" value="시작" disabled="disabled" title="첫페이지 입니다."/>
 							<input type="button" value="이전" disabled="disabled" title="이전 10페이지가 없습니다.">
 						</c:if>
 						
 						<!-- 페이지 번호 -->
-						<c:forEach var="i" begin="${noticeList.startPage}" end="${noticeList.endPage }" step="1">
+						<c:forEach var="i" begin="${communityList.startPage}" end="${communityList.endPage }" step="1">
 							<!-- 이미 선택된 페이지 -->
-							<c:if test="${i == noticeList.currentPage }">
+							<c:if test="${i == communityList.currentPage }">
 								<input type="button" value="${i}" disabled="disabled">
 							</c:if>
 							<!-- 선택이 되지 않은 나머지 페이지 -->
-							<c:if test="${i != noticeList.currentPage}">
+							<c:if test="${i != communityList.currentPage}">
 								<input type="button" value="${i}" onclick="location.href='?currentPage=${i}'">				
 							</c:if>
 						</c:forEach>
 						
 						<!-- 다음 페이지 -->
-						<c:if test="${noticeList.endPage < noticeList.totalPage}">
-							<input type="button" value="다음" onclick="location.href='?currentPage=${noticeList.endPage + 1}'">
-							<input type="button" value="마지막" onclick="location.href='?currentPage=${noticeList.totalPage}'">
+						<c:if test="${communityList.endPage < communityList.totalPage}">
+							<input type="button" value="다음" onclick="location.href='?currentPage=${communityList.endPage + 1}'">
+							<input type="button" value="마지막" onclick="location.href='?currentPage=${communityList.totalPage}'">
 						</c:if>
 						<!-- 다음 페이지가 존재하지 않을경우 -->
-						<c:if test="${noticeList.endPage >= noticeList.totalPage}">
+						<c:if test="${communityList.endPage >= communityList.totalPage}">
 							<input type="button" value="다음" disabled="disabled" title="마지막 페이지 입니다.">
 							<input type="button" value="마지막" disabled="disabled" title="다음 10페이지가 없습니다.">
 						</c:if>

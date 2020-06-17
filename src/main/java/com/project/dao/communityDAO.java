@@ -18,9 +18,13 @@ public interface communityDAO {
 
 //	전체 글 리스트를 불러온다.
 	ArrayList<CommunityVO> communityList(HashMap<String, Integer> hm);
+
+//	커뮤니티 서브메뉴의 글 갯수를 뽑아온다.
+	int communityEventCount(String categoryNum);
 	
-//	IT 행사 글의 리스트를 뽑아온다.
-	int communityEventCount();
+//	커뮤니티 서브메뉴의 글 리스트를 뽑아온다.
+	ArrayList<CommunityVO> communitySubList(HashMap<String, Integer> hm);
+
 
 	
 

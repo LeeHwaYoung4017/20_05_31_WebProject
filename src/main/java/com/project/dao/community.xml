@@ -35,10 +35,21 @@
 		]]>
 	</select>
 	
-	<select id="communityEventCount">
+	<select id="communityEventCount" resultType="int">
 		SELECT
 		count(*)
 		from PROJECT_COMMUNITY
+		where CATEGORY = #{categoryNum}
 	</select>
-
+	
+	<select id="communitySubList" parameterType="java.util.HashMap" resultType="com.project.vo.CommunityVO">
+		<![CDATA[
+			select * from(
+				select rownum rnum, AA.* from(
+					select * from PROJECT_COMMUNITY where CATEGORY = #{categoryNum}  order by idx desc
+				)AA where rownum <= #{end}
+			) where rnum >= #{start}
+		]]>
+	</select>
+ 
 </mapper>
