@@ -109,6 +109,21 @@ public class NoticeController {
 		return "notice/noticeList";
 	}
 	
+	@RequestMapping("/noticeView")
+	public String noticeView(HttpServletRequest request, Model model, NoticeVO vo) {
+		logger.info("noticeView 실행");
+		noticeDAO mapper = sqlSession.getMapper(noticeDAO.class);
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		logger.info("noticeView is idx = " + idx);
+		
+		vo = mapper.noticeData(idx);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("currentPage", Integer.parseInt(request.getParameter("currentPage")));
+		
+		return "notice/noticeView";
+	}
+	
 	
 
 	

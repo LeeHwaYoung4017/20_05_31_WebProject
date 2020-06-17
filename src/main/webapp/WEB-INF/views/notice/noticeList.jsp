@@ -99,13 +99,13 @@
 								<li>
 									<!-- 이미지 -->
 									<div class="imgs">
-										<a class="aSize" href="#">
+										<a class="aSize" href="noticeView?idx=${vo.idx}&currentPage=${noticeList.currentPage}">
 											<img src="${pageContext.request.contextPath}/resources/noticeImege/${vo.fileName}">
 										</a>
 									</div>
 									<!-- 제목 -->
 									<div class="titles">
-										<a class="aSize" href="#">
+										<a class="aSize" href="noticeView?idx=${vo.idx}&currentPage=${noticeList.currentPage}">
 											<h5>${vo.title }</h5>
 										</a>
 									</div>

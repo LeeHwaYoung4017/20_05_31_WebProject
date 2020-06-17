@@ -117,7 +117,7 @@
 						<!-- 이전 페이지 -->
 						<c:if test="${communityList.startPage > 1}">
 							<input type="button" value="시작" onclick="location.href='?currentPage=1'" title="첫 페이지"/>
-							<input type="button" value="이전" onclick="location.href='?currentPage=${communityList.startPage -1}'">
+							<input type="button" value="이전" onclick="location.href='?currentPage=${communityList.startPage -1}&category=${category}'">
 						</c:if>
 						<!-- 이전 페이지가 존재하지 않을경우 -->
 						<c:if test="${communityList.startPage <= 1}">
@@ -133,13 +133,13 @@
 							</c:if>
 							<!-- 선택이 되지 않은 나머지 페이지 -->
 							<c:if test="${i != communityList.currentPage}">
-								<input type="button" value="${i}" onclick="location.href='?currentPage=${i}'">				
+								<input type="button" value="${i}" onclick="location.href='?currentPage=${i}&category=${category}'">				
 							</c:if>
 						</c:forEach>
 						
 						<!-- 다음 페이지 -->
 						<c:if test="${communityList.endPage < communityList.totalPage}">
-							<input type="button" value="다음" onclick="location.href='?currentPage=${communityList.endPage + 1}'">
+							<input type="button" value="다음" onclick="location.href='?currentPage=${communityList.endPage + 1}&category=${category}'">
 							<input type="button" value="마지막" onclick="location.href='?currentPage=${communityList.totalPage}'">
 						</c:if>
 						<!-- 다음 페이지가 존재하지 않을경우 -->

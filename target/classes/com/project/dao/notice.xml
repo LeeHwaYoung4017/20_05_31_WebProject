@@ -34,5 +34,11 @@
 		]]>
 	</select>
 	
+	<select id="noticeData" parameterType="int" resultType="com.project.vo.NoticeVO">
+		select
+		 * from PROJECT_NOTICE 
+		 where idx = #{idx}
+	</select>
+	
 
 </mapper>

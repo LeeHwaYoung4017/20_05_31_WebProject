@@ -19,6 +19,9 @@ public interface noticeDAO {
 //	공지 전체 글 리스트
 	ArrayList<NoticeVO> noticeList(HashMap<String, Integer> hm);
 
+//	공지 idx를 넘겨 그 데이터를 controller의 vo에 저장한다
+	NoticeVO noticeData(int idx);
+
 
 
 

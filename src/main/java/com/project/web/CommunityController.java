@@ -125,6 +125,7 @@ public class CommunityController {
 		communityList.setCommunityList(mapper.communitySubList(hm));
 		
 		model.addAttribute("communityList", communityList);
+		model.addAttribute("category",categoryNum);
 		
 		return "community/communitySubList";
 	}

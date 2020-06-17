@@ -107,8 +107,20 @@
 					<ul class="allMenuUL">
 						<li style="width: 5%; height: 100%;">${vo.idx}</li>
 						<li style="width: 55%; height: 100%">${vo.title}</li>
-						<li style="width: 15%; height: 100%">${vo.category}</li>
-						<li style="width: 10%; height: 100%"><%-- ${vo.writeDate} --%></li>
+						<li style="width: 15%; height: 100%">
+						<c:choose>
+    						<c:when test="${vo.category eq 1}">
+    							IT행사
+    						</c:when>
+    						<c:when test="${vo.category eq 2}">
+    							언어
+    						</c:when>
+    						<c:when test="${vo.category eq 3}">
+    							잡담
+    						</c:when>
+    					</c:choose>
+						</li>
+						<li style="width: 10%; height: 100%"><fmt:formatDate value="${vo.writeDate }" pattern="yy-MM-dd"/></li>
 						<li style="width: 5%; height: 100%">${vo.hit}</li>
 						<li style="width: 5%; height: 100%">${vo.commentCount}</li>
 					</ul>

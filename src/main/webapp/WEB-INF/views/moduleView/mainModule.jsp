@@ -37,7 +37,7 @@ $(function(){
 		<div id="top_fixed_bar">
 			<div id="top_contents" style="background-color: #17181b;">
 				<!-- LoginVO의 manager 값이 manager일 시 아래 메뉴를 추가한다. -->
-				<c:if test="${vo.manager=='manager' }">
+				<c:if test="${sessionScope.vo.manager eq ('manager')}">
 					<div class="contents_logo_bar2" style="left:3%; font-family: 'Roboto', sans-serif;">
 					    <div class="logos"><a href="managerModeHome" style="text-decoration: none; color: #FFFFFF;">Manager Mode</a></div>
 					</div>
@@ -48,7 +48,7 @@ $(function(){
 				</div>
 				
 				<!-- 로그아웃 상태일 때 표시되는 메뉴 -->
-				<c:if test="${vo.id == null}">
+				<c:if test="${sessionScope.vo.id == null}">
 					<div class="contents_logo_bar2" style="left:76%; font-family: 'Roboto', sans-serif;">
 					    <div class="logos"><a href="login" style="text-decoration: none; color: #FFFFFF;">｜ Login</a></div>
 					</div>
@@ -58,7 +58,7 @@ $(function(){
 				</c:if>
 				
 				<!-- 로그인 상태일 때 표시되는 메뉴 -->
-				<c:if test="${vo.id != null }">
+				<c:if test="${sessionScope.vo.id != null }">
 					<div class="contents_logo_bar2" style="left:76%; font-family: 'Roboto', sans-serif;">
 					    <div class="logos"><a href="logout" style="text-decoration: none; color: #FFFFFF;">｜ Logout</a></div>
 					</div>
@@ -96,7 +96,7 @@ $(function(){
 									<li onclick="location.href='questionsList?page=1'"><a href="questionsList?page=1">문의사항</a></li>
 								</ul>
 							</li>
-							<c:if test="${vo.manager=='manager' }">
+							<c:if test="${sessionScope.vo.manager=='manager' }">
 								<li class="sub_menu1"><a href="#">관리하기</a>
 									<ul type="disc" class="sub_menu2">
 										<li onclick="location.href='memberList'"><a href="#">회원관리</a></li>
