@@ -9,4 +9,7 @@
 	<!-- Notice -->
 	<bean id="noticeList" class="com.project.vo.NoticeList"/>
 	
+	<!-- Community -->
+	<bean id="communityList" class="com.project.vo.CommunityList"/>
+	
 </beans>
