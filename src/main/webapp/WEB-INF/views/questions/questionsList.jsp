@@ -65,6 +65,7 @@
 						        <th>제목</th>
 						        <th>작성자</th>
 						        <th>게시일</th>
+						        <th>처리상태</th>
 						      </tr>
 						    </thead>
 						    <tbody>
@@ -96,6 +97,7 @@
 						        </c:choose>
 						        <td>${item.writer }</td>
 						        <td><fmt:formatDate value="${item.reg_date }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+						        <td>${item.status }</td>
 						      </tr>
 							  </c:forEach>
 						      </c:if>

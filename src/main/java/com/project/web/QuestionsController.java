@@ -85,6 +85,7 @@ public class QuestionsController {
 		return "redirect:questionsList?page=1";
 	}
 	
+//	글 상세화면
 	@RequestMapping(value="questionsDetail")
 	public String questionsDetail(HttpServletRequest req, Model model, QuestionsVO questionsVO) {
 		logger.info("questionsDetail에 들어옴.");
@@ -109,6 +110,18 @@ public class QuestionsController {
 		
 		QuestionsDAO mapper = sqlSession.getMapper(QuestionsDAO.class);
 		mapper.questionDelete(idx);
+		
+		return "redirect:questionsList?page=1";
+	}
+	
+	@RequestMapping(value="questionAnswer")
+	public String questionAnswer(HttpServletRequest req, QuestionsVO questionsVO) {
+		logger.info("컨트롤러에서 questionAnswer에 들어옴.");
+		
+		int idx = Integer.parseInt(req.getParameter("idx"));
+		
+		QuestionsDAO mapper = sqlSession.getMapper(QuestionsDAO.class);
+		mapper.questionAnswer(questionsVO);
 		
 		return "redirect:questionsList?page=1";
 	}
