@@ -22,4 +22,7 @@ public interface QuestionsDAO {
 //	글 삭제
 	void questionDelete(int idx);
 
+//	답변 등록
+	void questionAnswer(QuestionsVO questionsVO);
+
 }

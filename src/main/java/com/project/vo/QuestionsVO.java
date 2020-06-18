@@ -17,6 +17,8 @@ public class QuestionsVO {
 	private String writer;
 	private String content;
 	private String secret;
+	private String answer;
+	private String status;
 	private Date reg_date;
 	
 }

@@ -19,7 +19,6 @@
 	<![CDATA[
 		select * from (SELECT ROWNUM rn, tt.* FROM 
 		(SELECT * FROM questions order by idx desc) TT
-		
 	]]>
 		<if test="field != null">
 			<if test="field.equals('title')">
@@ -54,5 +53,10 @@
 	<delete id="questionDelete" parameterType="int">
 		delete from questions where idx = #{idx}
 	</delete>
+	
+	<update id="questionAnswer" parameterType="com.project.vo.QuestionsVO">
+		update questions set answer = #{answer}, status = '처리완료'
+		where idx = #{idx}
+	</update>
 	
 </mapper>
