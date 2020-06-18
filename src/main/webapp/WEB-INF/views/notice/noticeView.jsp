@@ -71,6 +71,18 @@
 		min-height: 30px;
 		height: auto;
 	}
+	
+	img{
+		border: 1px solid #d4d4d4;
+		box-sizing: border-box;
+	    box-shadow: 4px 2px 2px #d4d4d4;
+	    width: auto; 
+	    height: auto;
+	    min-width: 40%;
+	    min-height: 30%;
+	    max-width: 100%;
+	    max-height: 100%;
+	}
 
 </style>
 
@@ -86,9 +98,17 @@
 			<span id="dayLine">
 				<fmt:formatDate value="${vo.writeDate }" pattern="yyyy-MM-dd"/>
 			</span>
-			<div id="imgLine">
-				<img align="center" src="${pageContext.request.contextPath}/resources/noticeImege/${vo.fileName}">
-			</div>
+			<!-- 이미지가 noimage면 사진을 안나오게한다. -->
+			<c:choose>
+				<c:when test="${vo.fileName != 'noimage.jpg' }">
+					<div id="imgLine">
+						<img align="center" src="${pageContext.request.contextPath}/resources/noticeImege/${vo.fileName}">
+					</div>
+				</c:when>
+				<c:when test="${vo.fileName == 'noimage.jpg' }">
+					<div id="imgLine"></div>
+				</c:when>
+			</c:choose>
 			<div id="contentLine">
 				${vo.content}
 			</div>

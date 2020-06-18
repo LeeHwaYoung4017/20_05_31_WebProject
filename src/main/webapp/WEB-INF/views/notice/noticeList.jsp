@@ -32,8 +32,8 @@
 		width: 100%;
 		height: 5%;
 		float: left;
-		left: 38%;
 		bottom: 2%;
+		text-align: center;
 	}
 	
 	ul.noticeMenu {
@@ -51,6 +51,9 @@
 	    border: 1px solid #d3d3d3;
 	    box-sizing: border-box;
 	    box-shadow: 6px 3px 3px #d4d4d4;
+	}
+	.noticeMenu li:hover {
+		background-color: #d4d4d4;	
 	}
 	
 	.imgs {
@@ -74,6 +77,7 @@
 	li div a img {
 		width: 100%;
 		height: 100%;
+		border: 1px solid #d4d4d4;
 	}
 	
 	.aSize h5{
@@ -82,6 +86,7 @@
 		font-family: 'Noto Sans JP', sans-serif;
 		font-size: 12px;
 	}
+	
 		
 	</style>
 </head>

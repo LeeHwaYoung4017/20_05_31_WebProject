@@ -51,5 +51,50 @@
 			) where rnum >= #{start}
 		]]>
 	</select>
- 
+	
+	<select id="communityData" parameterType="int" resultType="com.project.vo.CommunityVO">
+		SELECT
+		* FROM PROJECT_COMMUNITY
+		WHERE
+		IDX = #{IDX}
+	</select>
+	
+	<update id="communityHitUp" parameterType="int">
+		update 
+		PROJECT_COMMUNITY 
+		set hit = hit + 1 
+		where idx = #{idx}
+	</update>
+	
+	<insert id="commentInsert" parameterType="com.project.vo.CommunityCommentVO">
+		INSERT
+		into PROJECT_COMMUNITY_COMMENT
+		(IDX, REF, NAME, PASSWORD, CONTENT)
+		values
+		(PROJECT_COMMUNITY_COM_IDX_SEQ.NEXTVAL,#{ref}, #{name}, #{password}, #{content})
+	</insert>
+ 	
+ 	<select id="commentCount" parameterType="int" resultType="int">
+ 		SELECT
+ 		count(*)
+ 		from PROJECT_COMMUNITY_COMMENT
+ 		where REF = #{idx}
+ 	</select>
+ 	
+ 	<select id="commentList" parameterType="java.util.HashMap" resultType="com.project.vo.CommunityCommentVO">
+		<![CDATA[
+			select * from(
+				select rownum rnum, AA.* from(
+					select * from PROJECT_COMMUNITY_COMMENT where ref = #{ref}  order by idx desc
+				)AA where rownum <= #{end}
+			) where rnum >= #{start}
+		]]>
+	</select>
+	
+	<update id="commentCountUpdate" parameterType="int">
+		update 
+		PROJECT_COMMUNITY 
+		set COMMENTCOUNT = COMMENTCOUNT+1 
+		where idx = #{idx}
+	</update>
 </mapper>

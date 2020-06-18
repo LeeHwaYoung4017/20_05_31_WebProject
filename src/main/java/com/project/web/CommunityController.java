@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dao.communityDAO;
+import com.project.vo.CommunityCommentList;
+import com.project.vo.CommunityCommentVO;
 import com.project.vo.CommunityList;
 import com.project.vo.CommunityVO;
 
@@ -31,6 +33,9 @@ public class CommunityController {
 	
 	@Autowired
 	private CommunityList communityList;
+	
+	@Autowired
+	private CommunityCommentList communityCommentList;
 	
 	@Resource(name="uploadPath2")
 	private String uploadPath2;
@@ -103,8 +108,13 @@ public class CommunityController {
 		communityDAO mapper = sqlSession.getMapper(communityDAO.class);
 		
 		String categoryNum = request.getParameter("category");
-		
 		int pageSize = 8;
+		if(categoryNum.equals("3")) {
+			pageSize = 20;	// 카테고리가 잡담이면 한 페이지에 글을 20개씩 뽑는다.
+		}else {
+			pageSize = 8;	// 그 외 카테고리는 8개씩 뽑는다.
+		}
+		
 		int currentPage = 1;
 		try {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -129,7 +139,61 @@ public class CommunityController {
 		
 		return "community/communitySubList";
 	}
-
+	
+	@RequestMapping("/communityView")
+	public String communityView(HttpServletRequest request, Model model, CommunityVO vo, CommunityCommentVO vo2) {
+		logger.info("communityView 실행");
+		communityDAO mapper = sqlSession.getMapper(communityDAO.class);
+//		게시물을 불러오는 곳
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		logger.info("communityView is idx = " + idx);
+		vo = mapper.communityData(idx);
+		
+//		댓글을 불러오는 곳
+		int pageSize = 30;
+		int currentPage = 1;
+		try {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}catch(Exception e) {}
+		int totalCount = mapper.commentCount(idx);
+		
+		communityCommentList.initCommunityCommentList(pageSize, totalCount, currentPage);
+		logger.info("communityCommentList.initCommunityCommentList 실행 완료");
+		
+		HashMap<String, Integer> hm = new HashMap<String, Integer>();
+		hm.put("start", communityCommentList.getStartNo());
+		hm.put("end", communityCommentList.getEndNo());
+		hm.put("ref", idx);
+		
+		communityCommentList.setCommunityCommentList(mapper.commentList(hm));
+		
+//		조회수 증가시키는 곳
+		mapper.communityHitUp(idx);
+		
+//		해당 정보를 View단에 전달한다.
+		model.addAttribute("vo", vo);
+		model.addAttribute("currentPage", Integer.parseInt(request.getParameter("currentPage")));
+		model.addAttribute("communityCommentList", communityCommentList);
+		
+		return "community/communityView";
+	}
+	
+	@RequestMapping(value="/communityCommentOK", method = RequestMethod.GET)
+	public void communityCommentOKGET() {}
+	
+	@RequestMapping(value = "/communityCommentOK", method = RequestMethod.POST)
+	public String communityCommentOKPOST(HttpServletRequest request, Model model, CommunityCommentVO vo) {
+		logger.info("communityCommentOK 실행");
+		communityDAO mapper = sqlSession.getMapper(communityDAO.class);
+		int idx = Integer.parseInt(request.getParameter("ref"));
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		String category = request.getParameter("category");
+		
+		mapper.commentInsert(vo);	//댓글을 추가한다.
+		mapper.commentCountUpdate(idx);	//해당 글의 댓글 갯수를 올려준다.
+		
+		return "redirect:communityView?idx="+idx+"&currentPage="+currentPage+"&category="+category;
+	}
 	
 	
 	
