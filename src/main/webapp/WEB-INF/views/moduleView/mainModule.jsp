@@ -36,13 +36,7 @@ $(function(){
 	<div id="container">
 		<div id="top_fixed_bar">
 			<div id="top_contents" style="background-color: #17181b;">
-				<!-- LoginVO의 manager 값이 manager일 시 아래 메뉴를 추가한다. -->
-				<c:if test="${sessionScope.vo.manager eq ('manager')}">
-					<div class="contents_logo_bar2" style="left:3%; font-family: 'Roboto', sans-serif;">
-					    <div class="logos"><a href="managerModeHome" style="text-decoration: none; color: #FFFFFF;">Manager Mode</a></div>
-					</div>
-				</c:if>
-				
+			
 				<div class="contents_logo_bar2" style="left:73%; font-family: 'Roboto', sans-serif;">
 				    <div class="logos"><a href="mainHome" style="text-decoration: none; color: #FFFFFF;">Home</a></div>
 				</div>

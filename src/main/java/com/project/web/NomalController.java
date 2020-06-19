@@ -32,11 +32,4 @@ public class NomalController {
 	public String mainHome(Model model, HttpServletRequest request) {
 		return "mainHome";
 	}
-	
-	@RequestMapping("/managerModeHome")
-	public String managerModeHome(HttpServletRequest request, Model model) {
-		logger.info("managerModeHome 실행");
-		
-		return "managerMode/managerModeHome";
-	}
 }

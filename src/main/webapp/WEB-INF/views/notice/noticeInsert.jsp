@@ -12,7 +12,6 @@
 		left: 0;
 		top: 0;
 		height: 700px;
-		background-color: #17181b;
 	}
 	.delLine{
 	    position: absolute;
@@ -22,6 +21,8 @@
 	    height: 90%;
 	    border: 1px solid #d4d4d4;
 	    background-color: white;
+	    box-sizing: border-box;
+	    box-shadow: 6px 3px 3px #d4d4d4;
 	}
 	#title{
 		position: relative;

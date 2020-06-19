@@ -73,7 +73,7 @@ public class CommunityController {
 			vo.setFileName(saveFileName);
 			file.transferTo(save);	//해당 결로로 이미지를 저장
 			mapper.communityInsert(vo);
-			return "redirect:communityInsert";
+			return "redirect:communityList";
 		}
 	}
 	

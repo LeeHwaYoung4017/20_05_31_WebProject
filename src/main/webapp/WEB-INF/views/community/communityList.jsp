@@ -67,8 +67,7 @@
 	    float: left;
 	    width: 100%;
 	    height: 10%;
-	    left: 11%;
-	    margin-left: 23%;
+	    text-align: center;
 	}
 	h1{
 		position:relative;
@@ -169,7 +168,7 @@
 							<input type="button" value="마지막" disabled="disabled" title="다음 10페이지가 없습니다.">
 						</c:if>
 						
-						<input type="button" value="작성하기" onclick="location.href='communityInsert'">
+						<input type="button" value="작성하기" style="float: right;" onclick="location.href='communityInsert'">
 					</div>
 				</div>
 			</div>
