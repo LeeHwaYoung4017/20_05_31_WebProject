@@ -113,19 +113,19 @@
 								<li>
 									<!-- 이미지 -->
 									<div class="imgs">
-										<a class="aSize" href="noticeView?idx=${vo.idx}&currentPage=${exhibitionList.currentPage}">
+										<a class="aSize" href="#">
 											<img src="${pageContext.request.contextPath}/resources/exhibitionImage/${vo.fileName}">
 										</a>
 									</div>
 									<!-- 제목 -->
 									<div class="titles">
-										<a class="aSize" href="noticeView?idx=${vo.idx}&currentPage=${exhibitionList.currentPage}">
+										<a class="aSize" href="#">
 											<h5 style="float:none; margin: 0; text-align: center; padding-top: 5%;">${vo.title }</h5>
 										</a>
 									</div>
 									<!-- 날짜 -->
 									<div class="days">
-										<a class="aSize" href="noticeView?idx=${vo.idx}&currentPage=${exhibitionList.currentPage}">
+										<a class="aSize" href="#">
 											<fmt:parseDate value="${vo.start_Date}" var="sday" pattern="yyyy-MM-dd"/>
 											<fmt:parseDate value="${vo.end_Date}" var="eday" pattern="yyyy-MM-dd"/>
 											<h5 style="float:none; margin: 0; text-align: center; padding-top: 2%;">

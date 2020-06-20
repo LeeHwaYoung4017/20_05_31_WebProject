@@ -2,10 +2,12 @@ package com.project.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -191,8 +193,6 @@ public class CommunityController {
 	@RequestMapping("communityUpdate")
 	public String communityUpdate(HttpServletRequest request, Model model, CommunityVO vo) {
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		String s = request.getParameter("title");
-		System.out.println(s);
 		
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("vo", vo);
@@ -201,15 +201,27 @@ public class CommunityController {
 	}
 	
 	@RequestMapping("communityUpdateOK")
-	public String communityUpdateOK(HttpServletRequest request, CommunityVO vo) {
+	public String communityUpdateOK(HttpServletRequest request, HttpServletResponse response, CommunityVO vo) throws IOException {
+		System.out.println("communityUpdateOK 실행");
 		communityDAO mapper = sqlSession.getMapper(communityDAO.class);
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		String category = request.getParameter("category");
+		String password = request.getParameter("password");
+		String passwordChk = mapper.passwordChk(idx);	//게시물의 비밀번호를 가져온다.
 		
-		mapper.communityUpdate(vo);
-		
-		return "redirect:communityView?idx="+idx+"&currentPage="+currentPage+"&category="+category;
+		if(password.equals(passwordChk)) {
+			mapper.communityUpdate(vo);
+			System.out.println("mapper.communityUpdate 실행");
+			return "redirect:communityView?idx="+idx+"&currentPage="+currentPage+"&category="+category;
+		} else {
+			response.setContentType("text/html; charset=UTF-8");
+//			일치하지 않으면 틀렸다는 메시지를 출력해준다.
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+            out.flush();
+		}
+		return "community/communityUpdate";
 	}
 	
 	@RequestMapping(value="/communityCommentOK", method = RequestMethod.GET)

@@ -40,5 +40,12 @@
 		 where idx = #{idx}
 	</select>
 	
+	<update id="noticeHit" parameterType="int">
+		UPDATE
+		PROJECT_NOTICE 
+		set hit = hit + 1 
+		where idx = #{idx}
+	</update>
+	
 
 </mapper>

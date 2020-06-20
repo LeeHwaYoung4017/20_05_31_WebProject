@@ -81,6 +81,13 @@
 		idx = #{idx}
 	</update>
 	
+	<select id="passwordChk" resultType="String" parameterType="int">
+		SELECT
+		PASSWORD FROM PROJECT_COMMUNITY
+		where
+		IDX = #{idx}
+	</select>
+	
 	<insert id="commentInsert" parameterType="com.project.vo.CommunityCommentVO">
 		INSERT
 		into PROJECT_COMMUNITY_COMMENT

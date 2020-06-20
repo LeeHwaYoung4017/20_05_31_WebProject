@@ -53,7 +53,7 @@ public class ExhibitionController {
 			vo.setFileName(saveFileName);
 			file.transferTo(save);	//해당 경로로 이미지를 저장한다.
 			mapper.exhibitionInsert(vo);
-			return "redirect:exhibitionInsert";
+			return "redirect:exhibitionList?category=1";
 		} else {
 			String originalName = file.getOriginalFilename();
 			saveFileName = idx+originalName.substring(originalName.lastIndexOf("."));	//이미지 명 + 파일 형식
@@ -62,7 +62,7 @@ public class ExhibitionController {
 			vo.setFileName(saveFileName);
 			file.transferTo(save);	//해당 결로로 이미지를 저장
 			mapper.exhibitionInsert(vo);
-			return "redirect:exhibitionInsert";
+			return "redirect:exhibitionList?category=1";
 		}
 	}
 	
@@ -89,6 +89,7 @@ public class ExhibitionController {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}catch (Exception e) {}
 		
+//		진행중 이벤트
 		if(category.equals("1")) {
 			int totalCount = mapper.exhibitionIngCount(date);
 			System.out.println(totalCount);
@@ -111,6 +112,7 @@ public class ExhibitionController {
 			model.addAttribute("exhibitionList", exhibitionList);
 			
 			return "exhibition/exhibitionList";
+//		종료 이벤트
 		} else {
 			int totalCount = mapper.exhibitionEndCount(date);
 			System.out.println(totalCount);

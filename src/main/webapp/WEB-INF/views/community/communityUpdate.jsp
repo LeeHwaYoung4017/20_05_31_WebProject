@@ -115,7 +115,7 @@
 				</div>
 				<div id="contentBtn">
 					<span class="contentBtns">
-						<input type="button" value="취소">
+						<input type="button" value="취소" onclick="history.back()">
 						<input type="submit" value="등록">
 					</span>
 					

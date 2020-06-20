@@ -21,6 +21,9 @@ public interface noticeDAO {
 
 //	공지 idx를 넘겨 그 데이터를 controller의 vo에 저장한다
 	NoticeVO noticeData(int idx);
+	
+//	공지 조회수를 올린다.
+	void noticeHit(int idx);
 
 
 
