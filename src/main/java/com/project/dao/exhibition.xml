@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.dao.exhibitionDAO">
+	
+	<select id="exhibitionIdx" resultType="int">
+		SELECT
+		last_number
+		from user_sequences
+		where
+		sequence_name = 'PROJECT_EXHIBITION_IDX_SEQ'
+	</select>
+	
+	<insert id="exhibitionInsert" parameterType="com.project.vo.ExhibitionVO">
+		INSERT
+		into PROJECT_EXHIBITION
+		(IDX, TITLE, CONTENT, FILENAME, START_DATE, END_DATE)
+		values
+		(PROJECT_EXHIBITION_IDX_SEQ.NEXTVAL, #{title}, #{content}, #{fileName}, #{start_Date}, #{end_Date})
+	</insert>
+	
+	<select id="exhibitionIngCount" resultType="int" parameterType="String">
+		SELECT
+		count(*)
+		from PROJECT_EXHIBITION
+		<![CDATA[
+			where
+			START_DATE <= #{date} 
+			AND
+			END_DATE >= #{date} 
+		]]>
+	</select>
+	
+	<select id="exhibitionIngList" parameterType="java.util.HashMap" resultType="com.project.vo.ExhibitionVO">
+		<![CDATA[
+			select * from(
+				select rownum rnum, AA.* from(
+					select * 
+					from PROJECT_EXHIBITION
+					where
+					START_DATE <= #{yy}||'-'||#{MM}||'-'||#{dd}
+					AND
+					END_DATE >= #{yy}||'-'||#{MM}||'-'||#{dd}
+					order by idx desc
+				)AA where rownum <= #{end}
+			) where rnum >= #{start}
+		]]>
+	</select>
+	
+	<select id="exhibitionEndCount" resultType="int" parameterType="String">
+		SELECT
+		count(*)
+		from PROJECT_EXHIBITION
+		<![CDATA[
+			where
+			END_DATE < #{date} 
+		]]>
+	</select>
+	
+	<select id="exhibitionEndList" parameterType="java.util.HashMap" resultType="com.project.vo.ExhibitionVO">
+		<![CDATA[
+			select * from(
+				select rownum rnum, AA.* from(
+					select * 
+					from PROJECT_EXHIBITION
+					where
+					END_DATE < #{yy}||'-'||#{MM}||'-'||#{dd}
+					order by idx desc
+				)AA where rownum <= #{end}
+			) where rnum >= #{start}
+		]]>
+	</select>
+	
+</mapper>

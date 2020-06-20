@@ -64,7 +64,7 @@ public class CommunityController {
 			vo.setFileName(saveFileName);
 			file.transferTo(save);	//해당 경로로 이미지를 저장한다.
 			mapper.communityInsert(vo);
-			return "redirect:communityInsert";
+			return "redirect:communityList";
 		} else {
 			String originalName = file.getOriginalFilename();
 			saveFileName = idx+originalName.substring(originalName.lastIndexOf("."));	//이미지 명 + 파일 형식

@@ -80,8 +80,8 @@ $(function(){
 							</li>
 							<li class="sub_menu1"><a href="#">전시회</a>
 								<ul type="disc" class="sub_menu2">
-									<li><a href="#">진행중</a></li>
-									<li><a href="#">종료</a></li>
+									<li onclick="location.href='exhibitionList?category=${1}'"><a href="#">진행중</a></li>
+									<li onclick="location.href='exhibitionList?category=${2}'"><a href="#">종료</a></li>
 								</ul>
 							</li>
 							<li class="sub_menu1"><a href="#">고객센터</a>
@@ -96,7 +96,7 @@ $(function(){
 										<li onclick="location.href='memberList'"><a href="#">회원관리</a></li>
 										<li onclick="location.href='noticeInsert'"><a href="#">공지사항 작성</a></li>
 										<li><a href="#">공지사항 관리하기</a></li>
-										<li><a href="#">전시회 작성</a></li>
+										<li onclick="location.href='exhibitionInsert'"><a href="#">전시회 작성</a></li>
 										<li><a href="#">전시회 관리하기</a></li>
 										<li><a href="#">메인공지 작성</a></li>
 									</ul>
