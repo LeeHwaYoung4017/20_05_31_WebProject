@@ -32,6 +32,12 @@ public interface communityDAO {
 //	해당 글의 조회수를 올려준다.
 	void communityHitUp(int idx);
 	
+//	게시물을 삭제한다
+	void communityDelete(int idx);
+
+//	게시물을 수정한다
+	void communityUpdate(CommunityVO vo);
+	
 //	댓글을 추가한다.
 	void commentInsert(CommunityCommentVO vo);
 	
@@ -43,6 +49,8 @@ public interface communityDAO {
 	
 //	해당 글의 댓글 갯수를 올려준다.
 	void commentCountUpdate(int idx);
+
+	
 
 
 

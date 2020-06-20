@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.project.dao.communityDAO;
 import com.project.vo.CommunityCommentList;
 import com.project.vo.CommunityCommentVO;
@@ -176,6 +177,39 @@ public class CommunityController {
 		model.addAttribute("communityCommentList", communityCommentList);
 		
 		return "community/communityView";
+	}
+	
+	@RequestMapping("communityDelete")
+	public String communityDelete(HttpServletRequest request) {
+		communityDAO mapper = sqlSession.getMapper(communityDAO.class);
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		mapper.communityDelete(idx);
+		
+		return "mainHome";
+	}
+	
+	@RequestMapping("communityUpdate")
+	public String communityUpdate(HttpServletRequest request, Model model, CommunityVO vo) {
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		String s = request.getParameter("title");
+		System.out.println(s);
+		
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("vo", vo);
+		
+		return "community/communityUpdate";
+	}
+	
+	@RequestMapping("communityUpdateOK")
+	public String communityUpdateOK(HttpServletRequest request, CommunityVO vo) {
+		communityDAO mapper = sqlSession.getMapper(communityDAO.class);
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		String category = request.getParameter("category");
+		
+		mapper.communityUpdate(vo);
+		
+		return "redirect:communityView?idx="+idx+"&currentPage="+currentPage+"&category="+category;
 	}
 	
 	@RequestMapping(value="/communityCommentOK", method = RequestMethod.GET)
