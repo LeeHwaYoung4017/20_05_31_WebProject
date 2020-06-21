@@ -23,6 +23,12 @@
 </style>
 </head>
 <body>
+<c:if test="${sessionScope.vo.manager eq none}">
+<script type="text/javascript">
+	alert('권한이 없습니다.'); 
+	location.href=history.go(-1);
+</script>
+</c:if>
 <jsp:include page="../moduleView/mainModule.jsp"/>
 	<div id="wrap">
 		<div id="container">
@@ -40,7 +46,12 @@
 						<c:set value="${loginList.loginList}" var="list"/>
 						<c:forEach var="vo" items="${list}">
 							<tr>
-								<td align="center">${vo.idx}</td>
+								<c:if test="${vo.manager ne 'manager'}">
+									<td align="center">${vo.idx}</td>
+								</c:if>
+								<c:if test="${vo.manager eq 'manager'}">
+									<td align="center">${vo.idx} (Manager)</td>
+								</c:if>
 								<td>${vo.id }</td>
 								<td>${vo.phone }</td>
 								<td>${vo.email }</td>
@@ -48,7 +59,7 @@
 								<td>
 									<input type="button" value="수정하기" onclick="location.href='memberUpdate?id=${vo.id}&phone=${vo.phone}&email=${vo.email}&address=${vo.address}'">
 									<input type="button" value="삭제하기" onclick="location.href='memberDelete?id=${vo.id}'">
-									<input type="button" value="권한추가">
+									<input type="button" value="권한추가" onclick="location.href='memberManager?id=${vo.id}'">
 								</td>
 							</tr>
 						</c:forEach>

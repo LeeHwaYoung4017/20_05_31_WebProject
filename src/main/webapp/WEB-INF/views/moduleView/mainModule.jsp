@@ -36,13 +36,7 @@ $(function(){
 	<div id="container">
 		<div id="top_fixed_bar">
 			<div id="top_contents" style="background-color: #17181b;">
-				<!-- LoginVO의 manager 값이 manager일 시 아래 메뉴를 추가한다. -->
-				<c:if test="${sessionScope.vo.manager eq ('manager')}">
-					<div class="contents_logo_bar2" style="left:3%; font-family: 'Roboto', sans-serif;">
-					    <div class="logos"><a href="managerModeHome" style="text-decoration: none; color: #FFFFFF;">Manager Mode</a></div>
-					</div>
-				</c:if>
-				
+			
 				<div class="contents_logo_bar2" style="left:73%; font-family: 'Roboto', sans-serif;">
 				    <div class="logos"><a href="mainHome" style="text-decoration: none; color: #FFFFFF;">Home</a></div>
 				</div>
@@ -86,8 +80,8 @@ $(function(){
 							</li>
 							<li class="sub_menu1"><a href="#">전시회</a>
 								<ul type="disc" class="sub_menu2">
-									<li><a href="#">진행중</a></li>
-									<li><a href="#">종료</a></li>
+									<li onclick="location.href='exhibitionList?category=${1}'"><a href="#">진행중</a></li>
+									<li onclick="location.href='exhibitionList?category=${2}'"><a href="#">종료</a></li>
 								</ul>
 							</li>
 							<li class="sub_menu1"><a href="#">고객센터</a>
@@ -101,10 +95,9 @@ $(function(){
 									<ul type="disc" class="sub_menu2">
 										<li onclick="location.href='memberList'"><a href="#">회원관리</a></li>
 										<li onclick="location.href='noticeInsert'"><a href="#">공지사항 작성</a></li>
-										<li><a href="#">공지사항 관리하기</a></li>
-										<li><a href="#">전시회 작성</a></li>
+										<li onclick="location.href='noticeManager'"><a href="#">공지사항 관리하기</a></li>
+										<li onclick="location.href='exhibitionInsert'"><a href="#">전시회 작성</a></li>
 										<li><a href="#">전시회 관리하기</a></li>
-										<li><a href="#">메인공지 작성</a></li>
 									</ul>
 								</li>
 							</c:if>

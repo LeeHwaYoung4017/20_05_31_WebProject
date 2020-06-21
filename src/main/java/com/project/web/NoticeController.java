@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.dao.LoginDAO;
+import com.project.dao.communityDAO;
 import com.project.dao.noticeDAO;
 import com.project.utill.FileUtills;
 import com.project.vo.LoginVO;
@@ -121,10 +122,66 @@ public class NoticeController {
 		model.addAttribute("vo", vo);
 		model.addAttribute("currentPage", Integer.parseInt(request.getParameter("currentPage")));
 		
+		mapper.noticeHit(idx);
+		
 		return "notice/noticeView";
 	}
 	
+	@RequestMapping("/noticeManager")
+	public String noticeManager(HttpServletRequest request, Model model, NoticeVO vo) {
+		
+		noticeDAO mapper = sqlSession.getMapper(noticeDAO.class);
+		int pageSize = 20;
+		int currentPage = 1;
+		try {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}catch (Exception e) {}
+		int totalCount = mapper.noticeCount();
+		logger.info("totalCount is = " + totalCount);
+		
+		noticeList.initNoticeList(pageSize, totalCount, currentPage);
+		
+		HashMap<String, Integer> hm = new HashMap<String, Integer>();
+		hm.put("start", noticeList.getStartNo());
+		hm.put("end", noticeList.getEndNo());
+		System.out.println(hm);
+		noticeList.setNoticeList(mapper.noticeList(hm));
+		
+		model.addAttribute("noticeList", noticeList);
+		
+		return "notice/noticeManager";
+	}
 	
-
+	@RequestMapping("/noticeDelete")
+	public String noticeDelete(HttpServletRequest request) {
+		System.out.println("noticeDelete 실행");
+		noticeDAO mapper = sqlSession.getMapper(noticeDAO.class);
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		mapper.noticeDelete(idx);
+		System.out.println("mapper.noticeDelete 실행");
+		return "redirect:noticeManager";
+	}
+	
+	@RequestMapping("/noticeUpdate")
+	public String noticeUpdate(HttpServletRequest request, Model model, NoticeVO vo) {
+		noticeDAO mapper = sqlSession.getMapper(noticeDAO.class);
+		
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		System.out.println("idx : " + idx);
+		
+		vo = mapper.noticeData(idx);
+		
+		model.addAttribute("vo",vo);
+		
+		return "notice/noticeUpdate";
+	}
+	
+	@RequestMapping("/noticeUpdateOK")
+	public String noticeUpdateOK(HttpServletRequest request, Model model, NoticeVO vo) {
+		noticeDAO mapper = sqlSession.getMapper(noticeDAO.class);
+		mapper.noticeUpdate(vo);
+		
+		return "redirect:noticeManager";
+	}
 	
 }

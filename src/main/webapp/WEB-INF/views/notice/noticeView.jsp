@@ -113,9 +113,6 @@
 				${vo.content}
 			</div>
 		</div>
-		<div id="commentAll">
-			여기다가 다음글 이전글 이동 만들자!! 화이팅
-		</div>
 	</div>
 </div>
 </body>

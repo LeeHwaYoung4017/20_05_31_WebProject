@@ -19,7 +19,7 @@
 	    position: relative;
 	    width: 70%;
 	    left: 15%;
-	    height: 97%;
+	    height: 100%;
 	    border: 1px solid #d4d4d4;
 	}
 	.listLine{

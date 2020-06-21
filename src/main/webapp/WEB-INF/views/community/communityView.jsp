@@ -34,9 +34,9 @@
 	#titleLine{
 		position: absolute;
 	    top: 2%;
-	    width: 85%;
+	    width: 70%;
 	    height: 5%;
-	    right: 15%;
+	    right: 30%;
 	    border: 1px solid #d4d4d4;
 	    box-sizing: border-box;
 	    box-shadow: 0px 2px 2px #d4d4d4;
@@ -45,9 +45,10 @@
 	#dayLine{
 		position: absolute;
 	    top: 2%;
-	    width: 15%;
+	    width: 30%;
 	    height: 5%;
-	    left:85%;
+	    left:70%;
+	    z-index: 10;
 	    border: 1px solid #d4d4d4;
 	    box-sizing: border-box;
 	    box-shadow: 4px 2px 2px #d4d4d4;
@@ -155,12 +156,20 @@
 <div id="wrap">
 	<div id="container">
 		<!-- 메인 글 영역 -->
+		<form action="communityUpdate" method="post">
+		<input type="hidden" value="${vo.idx}" name="idx" id="idx">
+		<input type="hidden" value="${vo.title}" name="title" id="title">
+		<input type="hidden" value="${vo.content}" name="content" id="content">
+		<input type="hidden" value="${currentPage}" name="currentPage" id="currentPage">
+		<input type="hidden" value="${vo.category}" name="category" id="category">
 		<div id="all">
 			<span id="titleLine">
 				${vo.title}
 			</span>
 			<span id="dayLine">
 				<fmt:formatDate value="${vo.writeDate }" pattern="yyyy-MM-dd"/>
+				<span id="btn"><input type="submit" value="글 수정"></span>
+				<span id="btn"><input type="button" value="글 삭제" onclick="location.href='communityDelete?idx=${vo.idx}'"></span>
 			</span>
 			<c:choose>
 				<c:when test="${vo.fileName != 'noimage.jpg' }">
@@ -176,6 +185,7 @@
 				${vo.content}
 			</div>
 		</div>
+		</form>
 		
 		<!-- 댓글 추가 영역 -->
 		<form action="communityCommentOK" method="post">

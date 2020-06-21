@@ -66,6 +66,28 @@
 		where idx = #{idx}
 	</update>
 	
+	<delete id="communityDelete">
+		delete 
+		from PROJECT_COMMUNITY
+		where
+		IDX = #{idx}
+	</delete>
+	
+	<update id="communityUpdate">
+		UPDATE
+		PROJECT_COMMUNITY
+		set TITLE = #{title}, CONTENT = #{content}, CATEGORY = #{category}
+		where
+		idx = #{idx}
+	</update>
+	
+	<select id="passwordChk" resultType="String" parameterType="int">
+		SELECT
+		PASSWORD FROM PROJECT_COMMUNITY
+		where
+		IDX = #{idx}
+	</select>
+	
 	<insert id="commentInsert" parameterType="com.project.vo.CommunityCommentVO">
 		INSERT
 		into PROJECT_COMMUNITY_COMMENT

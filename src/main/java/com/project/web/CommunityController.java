@@ -2,10 +2,12 @@ package com.project.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.HashMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 import com.project.dao.communityDAO;
 import com.project.vo.CommunityCommentList;
 import com.project.vo.CommunityCommentVO;
@@ -64,7 +67,7 @@ public class CommunityController {
 			vo.setFileName(saveFileName);
 			file.transferTo(save);	//해당 경로로 이미지를 저장한다.
 			mapper.communityInsert(vo);
-			return "redirect:communityInsert";
+			return "redirect:communityList";
 		} else {
 			String originalName = file.getOriginalFilename();
 			saveFileName = idx+originalName.substring(originalName.lastIndexOf("."));	//이미지 명 + 파일 형식
@@ -73,7 +76,7 @@ public class CommunityController {
 			vo.setFileName(saveFileName);
 			file.transferTo(save);	//해당 결로로 이미지를 저장
 			mapper.communityInsert(vo);
-			return "redirect:communityInsert";
+			return "redirect:communityList";
 		}
 	}
 	
@@ -176,6 +179,49 @@ public class CommunityController {
 		model.addAttribute("communityCommentList", communityCommentList);
 		
 		return "community/communityView";
+	}
+	
+	@RequestMapping("communityDelete")
+	public String communityDelete(HttpServletRequest request) {
+		communityDAO mapper = sqlSession.getMapper(communityDAO.class);
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		mapper.communityDelete(idx);
+		
+		return "mainHome";
+	}
+	
+	@RequestMapping("communityUpdate")
+	public String communityUpdate(HttpServletRequest request, Model model, CommunityVO vo) {
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("vo", vo);
+		
+		return "community/communityUpdate";
+	}
+	
+	@RequestMapping("communityUpdateOK")
+	public String communityUpdateOK(HttpServletRequest request, HttpServletResponse response, CommunityVO vo) throws IOException {
+		System.out.println("communityUpdateOK 실행");
+		communityDAO mapper = sqlSession.getMapper(communityDAO.class);
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		String category = request.getParameter("category");
+		String password = request.getParameter("password");
+		String passwordChk = mapper.passwordChk(idx);	//게시물의 비밀번호를 가져온다.
+		
+		if(password.equals(passwordChk)) {
+			mapper.communityUpdate(vo);
+			System.out.println("mapper.communityUpdate 실행");
+			return "redirect:communityView?idx="+idx+"&currentPage="+currentPage+"&category="+category;
+		} else {
+			response.setContentType("text/html; charset=UTF-8");
+//			일치하지 않으면 틀렸다는 메시지를 출력해준다.
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+            out.flush();
+		}
+		return "community/communityUpdate";
 	}
 	
 	@RequestMapping(value="/communityCommentOK", method = RequestMethod.GET)

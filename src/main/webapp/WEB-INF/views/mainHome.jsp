@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,18 +45,15 @@ $(function(){
 
 </head>
 <body>
+<c:set var="list" value="${exhibitionList.exhibitionList}"/>
 <jsp:include page="./moduleView/mainModule.jsp"/>
 	<div class="swiper-container">
 	    <div class="swiper-wrapper">
+	    	<c:forEach var="vo" items="${list}">
 	    	<div class="swiper-slide">
-	          <img src="${pageContext.request.contextPath }/resources/image/banner1.jpg">
+	          <img src="${pageContext.request.contextPath}/resources/exhibitionImage/${vo.fileName}">
 	     	</div>
-	     	<div class="swiper-slide">
-	          <img src="${pageContext.request.contextPath }/resources/image/banner2.jpg">
-	     	</div>
-	     	<div class="swiper-slide">
-	          <img src="${pageContext.request.contextPath }/resources/image/banner3.png">
-	    	</div>
+	     	</c:forEach>
 	    </div>
 	      <!-- If we need pagination -->
 	      <div class="swiper-pagination"></div>
