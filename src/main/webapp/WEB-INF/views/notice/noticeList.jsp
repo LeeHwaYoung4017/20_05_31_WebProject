@@ -105,7 +105,7 @@
 									<!-- 이미지 -->
 									<div class="imgs">
 										<a class="aSize" href="noticeView?idx=${vo.idx}&currentPage=${noticeList.currentPage}">
-											<img src="${pageContext.request.contextPath}/resources/noticeImege/${vo.fileName}">
+											<img src="${pageContext.request.contextPath}/resources/noticeImage/${vo.fileName}">
 										</a>
 									</div>
 									<!-- 제목 -->

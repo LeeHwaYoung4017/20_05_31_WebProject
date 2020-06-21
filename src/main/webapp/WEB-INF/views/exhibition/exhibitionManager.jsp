@@ -101,7 +101,7 @@
 		<div id="wrap">
 			<div id="container">
 				<div id="all">
-					<h1 align="center">공지게시판 관리</h1>
+					<h1 align="center">전시회 관리</h1>
 					<div id="allTitle">
 						<ul class="allTitleUL">
 							<li style="width: 5%; height: 100%;"></li>
