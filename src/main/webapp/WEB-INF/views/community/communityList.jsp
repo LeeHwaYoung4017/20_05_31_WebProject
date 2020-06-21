@@ -117,7 +117,7 @@
 							<li style="width: 15%; height: 100%">
 							<c:choose>
 	    						<c:when test="${vo.category eq 1}">
-	    							IT행사
+	    							후기
 	    						</c:when>
 	    						<c:when test="${vo.category eq 2}">
 	    							언어

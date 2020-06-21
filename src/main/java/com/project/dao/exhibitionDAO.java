@@ -24,6 +24,21 @@ public interface exhibitionDAO {
 	
 //	종료 이벤트 글 리스트를 불러온다.
 	ArrayList<ExhibitionVO> exhibitionEndList(HashMap<String, Integer> hm);
+	
+//	모든 이벤트 글 갯수를 가져온다.
+	int exhibitionCount();
+	
+//	모든 이벤트 글 리스트를 불러온다.
+	ArrayList<ExhibitionVO> exhibitionList(HashMap<String, Integer> hm);
+	
+//	해당 이벤트 글을 지운다.
+	void exhibitionDelete(int idx);
+	
+//	해당 이벤트 글의 데이터를 가져온다.
+	ExhibitionVO selectData(int idx);
+	
+//	해당 이벤트 글을 수정한다.
+	void exhibitionUpdate(ExhibitionVO vo);
 
 	
 

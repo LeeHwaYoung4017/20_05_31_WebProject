@@ -172,7 +172,7 @@ public class LoginController {
 		
 		mapper.memberDelete(id);
 		
-		return "login/login";
+		return "mainHome";
 	}
 	
 	@RequestMapping("/memberManager")
@@ -188,6 +188,12 @@ public class LoginController {
 		}
 		
 		return "redirect:memberList";
+	}
+	
+	@RequestMapping("/myPage")
+	public String myPage(HttpServletRequest request) {
+		
+		return "login/myPage";
 	}
 	
 }
