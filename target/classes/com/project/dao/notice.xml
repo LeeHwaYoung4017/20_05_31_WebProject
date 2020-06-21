@@ -47,5 +47,19 @@
 		where idx = #{idx}
 	</update>
 	
-
+	<delete id="noticeDelete">
+		DELETE
+		from PROJECT_NOTICE
+		where
+		IDX = #{idx}
+	</delete>
+	
+	<update id="noticeUpdate">
+		UPDATE
+		PROJECT_NOTICE
+		set TITLE = #{title}, CONTENT = #{content}
+		where
+		IDX = #{idx}
+	</update>
+	
 </mapper>

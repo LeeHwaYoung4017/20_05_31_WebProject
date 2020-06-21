@@ -152,7 +152,36 @@ public class NoticeController {
 		return "notice/noticeManager";
 	}
 	
+	@RequestMapping("/noticeDelete")
+	public String noticeDelete(HttpServletRequest request) {
+		System.out.println("noticeDelete 실행");
+		noticeDAO mapper = sqlSession.getMapper(noticeDAO.class);
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		mapper.noticeDelete(idx);
+		System.out.println("mapper.noticeDelete 실행");
+		return "redirect:noticeManager";
+	}
 	
-
+	@RequestMapping("/noticeUpdate")
+	public String noticeUpdate(HttpServletRequest request, Model model, NoticeVO vo) {
+		noticeDAO mapper = sqlSession.getMapper(noticeDAO.class);
+		
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		System.out.println("idx : " + idx);
+		
+		vo = mapper.noticeData(idx);
+		
+		model.addAttribute("vo",vo);
+		
+		return "notice/noticeUpdate";
+	}
+	
+	@RequestMapping("/noticeUpdateOK")
+	public String noticeUpdateOK(HttpServletRequest request, Model model, NoticeVO vo) {
+		noticeDAO mapper = sqlSession.getMapper(noticeDAO.class);
+		mapper.noticeUpdate(vo);
+		
+		return "redirect:noticeManager";
+	}
 	
 }

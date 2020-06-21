@@ -95,7 +95,7 @@
 		<div id="wrap">
 			<div id="container">
 				<div id="all">
-					<h1 align="center">커뮤니티</h1>
+					<h1 align="center">공지게시판 관리</h1>
 					<div id="allTitle">
 						<ul class="allTitleUL">
 							<li style="width: 5%; height: 100%;"></li>
@@ -108,19 +108,22 @@
 					</div>
 					<c:set value="${noticeList.noticeList}" var="list"/>
 					<div id="allLine">
-					<c:forEach items="${list}" var="vo">
-						<ul class="allMenuUL" onclick="location.href='noticeView?idx=${vo.idx}&currentPage=${noticeList.currentPage}'">
-							<li style="width: 5%; height: 100%;"></li>
-							<li style="width: 5%; height: 100%;">${vo.idx}</li>
-							<li style="width: 50%; height: 100%">${vo.title}</li>
-							<li style="width: 10%; height: 100%"><fmt:formatDate value="${vo.writeDate }" pattern="yy-MM-dd"/></li>
-							<li style="width: 5%; height: 100%">${vo.hit}</li>
-							<li style="width: 20%; height: 100%;">
-								<input type="submit" value="수정하기">
-								<input type="button" value="삭제하기">
-							</li>
-						</ul>
-					</c:forEach>
+						<c:forEach items="${list}" var="vo">
+						<form action="noticeUpdate" method="post">
+							<input type="hidden" value="${vo.idx}" name="idx" id="idx"/>
+							<ul class="allMenuUL">
+								<li style="width: 5%; height: 100%;"></li>
+								<li style="width: 5%; height: 100%;">${vo.idx}</li>
+								<li style="width: 50%; height: 100%">${vo.title}</li>
+								<li style="width: 10%; height: 100%"><fmt:formatDate value="${vo.writeDate }" pattern="yy-MM-dd"/></li>
+								<li style="width: 5%; height: 100%">${vo.hit}</li>
+								<li style="width: 20%; height: 100%;">
+									<input type="submit" value="수정하기" style="z-index: 100;">
+									<input type="button" value="삭제하기" onclick="location.href='noticeDelete?idx=${vo.idx}'" style="z-index: 100;">
+								</li>
+							</ul>
+						</form>
+						</c:forEach>
 					</div>
 					<div id="allBottomLine">
 						<!-- 페이지 번호 -->

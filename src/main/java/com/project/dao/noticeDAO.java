@@ -24,7 +24,13 @@ public interface noticeDAO {
 	
 //	공지 조회수를 올린다.
 	void noticeHit(int idx);
+	
+//	공지 글을 지운다.
+	void noticeDelete(int idx);
 
+//	공지 글을 수정한다.
+	void noticeUpdate(NoticeVO vo);
+	
 
 
 
