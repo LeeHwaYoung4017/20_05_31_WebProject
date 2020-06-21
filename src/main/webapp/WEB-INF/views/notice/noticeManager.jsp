@@ -91,6 +91,12 @@
 
 </head>
 <body>
+<c:if test="${sessionScope.vo.manager eq none}">
+<script type="text/javascript">
+	alert('권한이 없습니다.'); 
+	location.href=history.go(-1);
+</script>
+</c:if>
 <jsp:include page="../moduleView/mainModule.jsp"/>
 		<div id="wrap">
 			<div id="container">

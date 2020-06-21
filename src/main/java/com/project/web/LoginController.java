@@ -175,4 +175,19 @@ public class LoginController {
 		return "login/login";
 	}
 	
+	@RequestMapping("/memberManager")
+	public String memberManager(HttpServletRequest request) {
+		LoginDAO mapper = sqlSession.getMapper(LoginDAO.class);
+		String id = request.getParameter("id");
+		String chk = "";
+		chk = mapper.managerchk(id);
+		if(chk.equals("manager")) {
+			mapper.removeManager(id);
+		}else {
+			mapper.addManager(id);
+		}
+		
+		return "redirect:memberList";
+	}
+	
 }

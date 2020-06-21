@@ -58,7 +58,7 @@
 </style>
 </head>
 <body>
-<c:if test="${vo.manager!='manager' }">
+<c:if test="${sessionScope.vo.manager eq none}">
 <script type="text/javascript">
 	alert('권한이 없습니다.'); 
 	location.href=history.go(-1);

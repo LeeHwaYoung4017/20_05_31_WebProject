@@ -94,9 +94,9 @@ $(function(){
 
 </head>
 <body>
-<c:if test="${sessionScope.vo.id eq null}">
+<c:if test="${sessionScope.vo.manager eq none}">
 <script type="text/javascript">
-	alert('로그인 후 사용 가능합니다.'); 
+	alert('권한이 없습니다.'); 
 	location.href=history.go(-1);
 </script>
 </c:if>

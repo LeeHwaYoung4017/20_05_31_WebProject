@@ -57,5 +57,31 @@
 		where
 		id = #{id}
 	</delete>
+	
+	<select id="managerchk" parameterType="String" resultType="String">
+		SELECT
+		MANAGER
+		from PROJECT_MEMBER
+		where
+		ID = #{id}
+	</select>
+	
+	<update id="addManager" parameterType="String">
+		UPDATE
+		PROJECT_MEMBER
+		set
+		MANAGER = 'manager'
+		where
+		ID = #{id}
+	</update>
+	
+	<update id="removeManager" parameterType="String">
+		UPDATE
+		PROJECT_MEMBER
+		set
+		MANAGER = 'none'
+		where
+		ID = #{id}
+	</update>
 
 </mapper>

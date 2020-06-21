@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,6 +56,12 @@
 
 </head>
 <body>
+<c:if test="${sessionScope.vo.manager eq none}">
+<script type="text/javascript">
+	alert('권한이 없습니다.'); 
+	location.href=history.go(-1);
+</script>
+</c:if>
 <jsp:include page="../moduleView/mainModule.jsp"/>
 	<div class="login-Form">
 		<div class="login-wd">
