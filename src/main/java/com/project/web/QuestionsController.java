@@ -61,6 +61,37 @@ public class QuestionsController {
 		return "questions/questionsList";
 	}
 	
+	@RequestMapping(value="questionsList2")
+	public String questionsList2(HttpServletRequest req, Model model) {
+		logger.info("questionsList 들어옴");
+		
+//		page, field, search 파라미터를 받음.
+		int page = Integer.parseInt(req.getParameter("page"));
+		String field = req.getParameter("field");
+		String search = req.getParameter("search");
+		System.out.println("page, field, search에 값은 : " + page + ", " + field + ", " + search);
+		
+//		hashMap에 field, search 값을 넣어줌.
+		HashMap<String, Object> hmap = new HashMap<String, Object>();
+		hmap.put("field", field);
+		hmap.put("search", search);
+		
+//		페이징을 하기위해 전체 글수를 가져옴.
+		QuestionsDAO mapper = sqlSession.getMapper(QuestionsDAO.class);
+		questionsList.setTotalCount(mapper.countSelect(hmap));
+//		페이징을 하기위해 조건에 따라 값들을 초기화해줌.
+		questionsList.initQuestionsList(questionsList.getPageSize(), questionsList.getTotalCount(), page);
+		hmap.put("startNo", questionsList.getStartNo());
+		hmap.put("endNo", questionsList.getEndNo());
+//		계산한 1페이지당 나오는 글 수를 리스트 형태로 가져옴
+		questionsList.setQuestionsVO(mapper.selectList(hmap));
+		
+//		가져온 값들을 model 객체에 넣어줌
+		model.addAttribute("questionsList", questionsList);
+		
+		return "questions/questionsList2";
+	}
+	
 //	문의사항 입력 페이지 이동
 	@RequestMapping(value="questionsInsert")
 	public String questionsInsert() {

@@ -47,6 +47,10 @@
 		width: 100%;
 		padding: 1%;
 	}
+	
+	.insertOK{
+		margin-left: 25%;
+	}
 	</style>
 </head>
 <body>
@@ -58,8 +62,9 @@
 			<div class="all">
 				<div class="delLine">
 					<div class="listLine">
-						<table class="table table-striped">
-						    <thead>
+					<h1 align="center" style="margin: 2%;">문의사항</h1>
+						<table class="table table-hover">
+						    <thead class="thead-dark">
 						      <tr>
 						        <th>번호</th>
 						        <th>제목</th>
@@ -114,7 +119,8 @@
 						</select>
 					  	<input type="search" name="search" width="10%">
 					  	<input type="submit" value="검색">
-					  	<input type="button" value="글쓰기" onclick="insert()">
+					  	
+					  	<input type="button" class="btn btn-success insertOK" value="글쓰기" onclick="insert()">
 					  	<br/>
 					</form>
 					</div>
