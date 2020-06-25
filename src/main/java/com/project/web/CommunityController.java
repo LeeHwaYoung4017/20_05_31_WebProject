@@ -218,7 +218,7 @@ public class CommunityController {
 			response.setContentType("text/html; charset=UTF-8");
 //			일치하지 않으면 틀렸다는 메시지를 출력해준다.
             PrintWriter out = response.getWriter();
-            out.println("<script>alert('로그인 정보를 확인해주세요.'); history.go(-1);</script>");
+            out.println("<script>alert('비밀번호가 일치하지 않습니다.'); history.go(-1);</script>");
             out.flush();
 		}
 		return "community/communityUpdate";

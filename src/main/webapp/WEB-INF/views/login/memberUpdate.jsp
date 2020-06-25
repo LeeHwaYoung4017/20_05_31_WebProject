@@ -68,7 +68,7 @@
 			<div class="wrapper">
 			<br><br><br><br><br>
 			<div class="inner">
-			<h2 align="center">Join</h2>
+			<h2 align="center">Update</h2>
 			<p></p>
 			<form action="memberUpdateOK" method="post">
 				<input type="hidden" value="${vo.id}" name="id" id="id">
