@@ -71,4 +71,47 @@
 		]]>
 	</select>
 	
+	<select id="exhibitionCount" resultType="int">
+		SELECT
+		count(*)
+		from PROJECT_EXHIBITION
+	</select>
+	
+	<select id="exhibitionList" parameterType="java.util.HashMap" resultType="com.project.vo.ExhibitionVO">
+		<![CDATA[
+			SELECT * from(
+				select rownum rnum, AA.* from(
+					select * from PROJECT_EXHIBITION order by idx desc
+				)AA where rownum <= #{end}
+			) where rnum >= #{start}
+		]]>
+	</select>
+	
+	<delete id="exhibitionDelete" parameterType="int">
+		DELETE 
+		from PROJECT_EXHIBITION 
+		where 
+		IDX = #{idx}
+	</delete>
+	
+	<select id="selectData" parameterType="int" resultType="com.project.vo.ExhibitionVO">
+		SELECT
+		* from
+		PROJECT_EXHIBITION
+		where
+		IDX = #{idx}
+	</select>
+	
+	<update id="exhibitionUpdate">
+		UPDATE
+		PROJECT_EXHIBITION
+		set 
+		TITLE = #{title}, 
+		START_DATE = #{start_Date}, 
+		END_DATE = #{end_Date}, 
+		CONTENT = #{content}
+		where
+		IDX = #{idx}
+	</update>
+	
 </mapper>

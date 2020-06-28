@@ -102,7 +102,7 @@
 					<span>
 						<select name="category" id="category" class="contentCategory">
 							<option value="010" selected="selected">게시판을 선택해주세요</option>
-							<option value="1">IT행사</option>
+							<option value="1">후기</option>
 							<option value="2">언어</option>
 							<option value="3">잡담</option>
 						</select>

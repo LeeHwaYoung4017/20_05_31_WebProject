@@ -1,11 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	//form의 submit 버튼이 클릭되면 실행된다.
+	$("#event").submit(function(){
+		var startDate = $('#start_Date').val();
+		var endDate = $('#end_Date').val();
+	         
+		//-을 구분자로 연,월,일로 잘라내어 배열로 반환
+		var startArray = startDate.split('-');
+		var endArray = endDate.split('-');
+	         
+		//배열에 담겨있는 연,월,일을 사용해서 Date 객체 생성
+		var start_date = new Date(startArray[0], startArray[1], startArray[2]);
+		var end_date = new Date(endArray[0], endArray[1], endArray[2]);
+	         
+		//날짜를 숫자형태의 날짜 정보로 변환하여 비교한다.
+		if(start_date.getTime() > end_date.getTime()) {
+			alert("종료날짜보다 시작날짜가 작아야합니다.");
+			return false;
+		}
+	});
+});
 
+</script>
 <style type="text/css">
 	
 	#all {
@@ -38,15 +63,6 @@
 		top: 3%;
 	}
 	
-	.contentPassword{
-		height: 100%;
-		width: 30%
-	}
-	.contentCategory{
-		height: 100%;
-		width: 40%;
-		margin-left: 2%;
-	}
 	.contentFile{
 		height: 100%;
 		width: 24%;
@@ -80,15 +96,14 @@
 
 </head>
 <body>
-<c:if test="${sessionScope.vo.id eq null}">
+<c:if test="${sessionScope.vo.manager eq none}">
 <script type="text/javascript">
-	alert('로그인 후 사용 가능합니다.'); 
+	alert('권한이 없습니다.'); 
 	location.href=history.go(-1);
 </script>
 </c:if>
 <jsp:include page="../moduleView/mainModule.jsp"/>
-<form action="communityUpdateOK" method="post">
-<input type="hidden" value="${currentPage}" name="currentPage">
+<form action="exhibitionUpdateOK" method="post" enctype="multipart/form-data" id="event">
 <input type="hidden" value="${vo.idx}" name="idx">
 	<div id="wrap">
 		<div id="container">
@@ -100,25 +115,17 @@
 					<span><input type="text" id="title" name="title" value="${vo.title}"></span>
 				</div>
 				<div id="subcontents">
-					<span><input type="password" class="contentPassword" id="password" name="password" placeholder="비밀번호를 입력하세요."></span>
-					<span>
-						<select name="category" id="category" class="contentCategory">
-							<option value="3" selected="selected">게시판을 선택해주세요</option>
-							<option value="1">IT행사</option>
-							<option value="2">언어</option>
-							<option value="3">잡담</option>
-						</select>
-					</span>
+					<span><input type="date" name="start_Date" id="start_Date" value="${vo.start_Date}"></span>
+					<span><input type="date" name="end_Date" id="end_Date" value="${vo.end_Date}"></span>
 				</div>
 				<div id="contentMain">
 					<textarea name="content" id="content">${vo.content}</textarea>
 				</div>
 				<div id="contentBtn">
 					<span class="contentBtns">
-						<input type="button" value="취소" onclick="history.back()">
+						<input type="button" value="취소">
 						<input type="submit" value="등록">
 					</span>
-					
 				</div>
 			</div>
 		</div>

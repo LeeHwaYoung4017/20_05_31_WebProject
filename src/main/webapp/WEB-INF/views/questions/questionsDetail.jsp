@@ -15,7 +15,7 @@
 <title>Insert title here</title>
 <style type="text/css">
 	th {
-		background: blue;
+		background: #000040;
 		color: white;
 		text-align: center;
 	}

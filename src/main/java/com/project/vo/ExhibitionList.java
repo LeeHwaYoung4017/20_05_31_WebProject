@@ -40,6 +40,7 @@ public class ExhibitionList {
 		endPage = startPage + 9;
 		endPage = endPage > totalPage ? totalPage : endPage;
 	}
+
 	
 	
 	

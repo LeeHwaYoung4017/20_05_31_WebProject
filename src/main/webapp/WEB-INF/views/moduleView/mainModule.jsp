@@ -57,7 +57,7 @@ $(function(){
 					    <div class="logos"><a href="logout" style="text-decoration: none; color: #FFFFFF;">｜ Logout</a></div>
 					</div>
 					<div class="contents_logo_bar2" style="left:81%; font-family: 'Roboto', sans-serif;">
-					    <div class="logos"><a href="#" style="text-decoration: none; color: #FFFFFF;">｜ MyPage</a></div>
+					    <div class="logos"><a href="myPage" style="text-decoration: none; color: #FFFFFF;">｜ MyPage</a></div>
 					</div>
 				</c:if>
 			</div>
@@ -73,7 +73,7 @@ $(function(){
 							<li class="sub_menu1" onclick="location.href='noticeList'"><a href="#">공지사항</a></li>
 							<li class="sub_menu1" ondblclick="location.href='communityList'"><a href="#">커뮤니티</a>
 								<ul type="disc" class="sub_menu2">
-									<li onclick="location.href='communitySubList?category=${1}'"><a href="#">IT행사</a></li>
+									<li onclick="location.href='communitySubList?category=${1}'"><a href="#">후기</a></li>
 									<li onclick="location.href='communitySubList?category=${2}'"><a href="#">언어</a></li>
 									<li onclick="location.href='communitySubList?category=${3}'"><a href="#">잡담</a></li>
 								</ul>
@@ -97,7 +97,7 @@ $(function(){
 										<li onclick="location.href='noticeInsert'"><a href="#">공지사항 작성</a></li>
 										<li onclick="location.href='noticeManager'"><a href="#">공지사항 관리하기</a></li>
 										<li onclick="location.href='exhibitionInsert'"><a href="#">전시회 작성</a></li>
-										<li><a href="#">전시회 관리하기</a></li>
+										<li onclick="location.href='exhibitionManager'"><a href="#">전시회 관리하기</a></li>
 									</ul>
 								</li>
 							</c:if>
