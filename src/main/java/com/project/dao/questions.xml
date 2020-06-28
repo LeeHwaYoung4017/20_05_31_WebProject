@@ -25,7 +25,7 @@
 				where title LIKE '%'||#{search}||'%'
 			</if>
 			<if test="field.equals('writer')">
-				where writer = '%'||#{search}||'%'
+				where writer LIKE '%'||#{search}||'%'
 			</if>
 		</if>
 	<![CDATA[

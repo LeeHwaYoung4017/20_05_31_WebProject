@@ -58,8 +58,8 @@
 	</beans:bean>
 	
 	<!-- 전시회 이미지 경로 -->
-	<beans:bean class="java.lang.String" id="uploadPath3">
+	<!-- <beans:bean class="java.lang.String" id="uploadPath3">
 		<beans:constructor-arg value="C:\spring\workspace\20_05_31_WebProject\src\main\webapp\resources\exhibitionImage"/>
-	</beans:bean>
+	</beans:bean> -->
 	
 </beans:beans>

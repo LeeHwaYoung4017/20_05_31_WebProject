@@ -11,6 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <title>Insert title here</title>
 	<style type="text/css">
 	.all{
@@ -19,38 +20,67 @@
 		left: 0;
 		top: 0;
 		height: 700px;
+		overflow: hidden;
 	}
 	.delLine{
 	    position: relative;
 	    width: 70%;
 	    left: 15%;
-	    height: 97%;
+	    height: 100%;
 	    border: 1px solid #d4d4d4;
+	    float: left;
 	}
 	.listLine{
 		position: relative;
 		width: 100%;
 		height: 93%;
 		margin-top: 20px;
+		float: left;
+		clear: both;
 	}
 	.bottomLine{
 		position: relative;
 		width: 100%;
 		height: 10%;
-		float: left;
 		left: 38%;
-		bottom: 5%;
+		bottom: 10%;
 		padding-bottom: 2%;
+		float: left;
+		clear: both;
 	}
 	.search{
 		position: relative;
 		width: 100%;
 		padding: 1%;
+		right: 38%;
+		bottom:0px;
+	}
+	.insertOK{
+		position: relative;
+		width: 100px;
+		float: right;
+		margin: 0px 1% 1% 0px;;
 	}
 	
-	.insertOK{
-		margin-left: 25%;
+	th, td{
+		text-align: center;
 	}
+	
+	img {
+		align-items: center;
+	}
+	
+	select { 
+		width: 100px; /* 원하는 너비설정 */ 
+		padding: .3em .6em; /* 여백으로 높이 설정 */ 
+		font-family: inherit; /* 폰트 상속 */ 
+		background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%; /* 네이티브 화살표 대체 */ 
+		border: 1px solid #999; 
+		border-radius: 0px; /* iOS 둥근모서리 제거 */ 
+		-webkit-appearance: none; /* 네이티브 외형 감추기 */ 
+		-moz-appearance: none; 
+		appearance: none; }
+
 	</style>
 </head>
 <body>
@@ -62,7 +92,8 @@
 			<div class="all">
 				<div class="delLine">
 					<div class="listLine">
-					<h1 align="center" style="margin: 2%;">문의사항</h1>
+						<h1 align="center" style="margin-top: 2%;">문의사항</h1>
+						<button class="btn btn-success insertOK" type="button" onclick="insert()">글쓰기</button>
 						<table class="table table-hover">
 						    <thead class="thead-dark">
 						      <tr>
@@ -86,11 +117,11 @@
 						        <c:choose>
 						        	<c:when test="${item.secret != null}">
 						        		<c:if test="${item.writer != sessionScope.vo.id && sessionScope.vo.manager ne ('manager')}">
-						        		<td><img alt="잠긴자물쇠" src="resources/image/secret.png" width="20px" align="left"> 비밀글입니다.</td>
+						        		<td><img alt="잠긴자물쇠" src="resources/image/secret.png" width="20px"> 비밀글입니다.</td>
 						        		</c:if>
 						        		<c:if test="${item.writer == sessionScope.vo.id || sessionScope.vo.manager eq ('manager')}">
 						        		<td><a href="questionsDetail?idx=${item.idx }">
-						        		<img alt="열린자물쇠" src="resources/image/openSecret.png" width="20px" align="left">${item.title }
+						        		<img alt="열린자물쇠" src="resources/image/openSecret.png" width="20px">${item.title }
 						        		</a></td>
 						        		</c:if>
 						        	</c:when>
@@ -108,22 +139,9 @@
 						      </c:if>
 						    </tbody>
 						  </table>
-				  	</div>
-					<div class="bottomLine">
-					<div class="search">
-					<form action="questionsList">
-					<input type="hidden" name="page" value="1">
-						<select name="field">
-							<option value="title">제목</option>
-							<option value="writer">작성자</option>
-						</select>
-					  	<input type="search" name="search" width="10%">
-					  	<input type="submit" value="검색">
-					  	
-					  	<input type="button" class="btn btn-success insertOK" value="글쓰기" onclick="insert()">
-					  	<br/>
-					</form>
 					</div>
+					<div style="clear: both;"></div>
+					<div class="bottomLine">
 						<!-- 이전 페이지 -->
 						<c:if test="${questionsList.startPage > 1}">
 							<input type="button" value="시작" onclick="location.href='?page=1'" title="첫 페이지"/>
@@ -157,6 +175,32 @@
 							<input type="button" value="다음" disabled="disabled" title="마지막 페이지 입니다.">
 							<input type="button" value="마지막" disabled="disabled" title="다음 10페이지가 없습니다.">
 						</c:if>
+						<form action="questionsList">
+						<input type="hidden" name="page" value="1">
+					  	<div class="container">
+					  	<div align="center">
+							<div class="row">
+							<div class="search">
+								<div class="col-md-6">
+									<div class="input-prepend input-group">
+										<div class="input-group-prepend">
+											<select name="field">
+												<option value="title">제목</option>
+												<option value="writer">작성자</option>
+											</select>
+										</div>
+										<input class="form-control" id="prependedInput" size="16" type="text"
+											name="search" placeholder="검색할 글자를 적으세요">
+										<span class="input-group-append">
+											<button class="btn btn-primary" type="submit">검색</button>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
+					</form>
 					</div>	
 				</div>
 			</div>
@@ -167,10 +211,17 @@
 	var vo = document.getElementById('writer').value
 	function insert() {
 		if(vo == ""){
-			alert("로그인을 하셔야 글쓰기가 가능합니다.")
+			swal({
+				text: "로그인을 하셔야 글쓰기가 가능합니다.",
+			});
 		}else{
-			alert("글쓰기 페이지로 이동합니다.")
-			location.href="questionsInsert"
+			swal({
+				text: "글쓰기 페이지로 이동합니다.",
+			});
+			setTimeout(function() {
+				location.href="questionsInsert"
+				}, 1000);
+			
 		}
 	}
 </script>

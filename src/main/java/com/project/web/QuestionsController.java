@@ -150,6 +150,7 @@ public class QuestionsController {
 		logger.info("컨트롤러에서 questionAnswer에 들어옴.");
 		
 		int idx = Integer.parseInt(req.getParameter("idx"));
+		System.out.println("idx의 값은 : " + idx);
 		
 		QuestionsDAO mapper = sqlSession.getMapper(QuestionsDAO.class);
 		mapper.questionAnswer(questionsVO);

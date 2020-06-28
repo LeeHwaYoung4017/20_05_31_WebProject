@@ -88,24 +88,20 @@ public class ExhibitionController {
 		try {
 			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		}catch (Exception e) {}
+		HashMap<String, Integer> hm = new HashMap<String, Integer>();
+		hm.put("yy", yy);
+		hm.put("MM", MM);
+		hm.put("dd", dd);
+		int totalCount = mapper.exhibitionIngCount(date);
+		exhibitionList.initExhibitionList(pageSize, totalCount, currentPage);
+		System.out.println("exhibitionList.initExhibitionList 실행 완료");
+		hm.put("start", exhibitionList.getStartNo());
+		hm.put("end", exhibitionList.getEndNo());
+		System.out.println(hm);
 		
 //		진행중 이벤트
 		if(category.equals("1")) {
-			int totalCount = mapper.exhibitionIngCount(date);
-			System.out.println(totalCount);
-			
-			exhibitionList.initExhibitionList(pageSize, totalCount, currentPage);
-			System.out.println("exhibitionList.initExhibitionList 실행 완료");
-			
 //			데이터 베이스에 값을 넘기고 가져온다.
-			HashMap<String, Integer> hm = new HashMap<String, Integer>();
-			hm.put("start", exhibitionList.getStartNo());
-			hm.put("end", exhibitionList.getEndNo());
-			hm.put("yy", yy);
-			hm.put("MM", MM);
-			hm.put("dd", dd);
-			System.out.println(hm);
-			
 			exhibitionList.setExhibitionList(mapper.exhibitionIngList(hm));
 			System.out.println("mapper.exhibitionList 실행완료");
 			
@@ -114,21 +110,7 @@ public class ExhibitionController {
 			return "exhibition/exhibitionList";
 //		종료 이벤트
 		} else {
-			int totalCount = mapper.exhibitionEndCount(date);
-			System.out.println(totalCount);
-			
-			exhibitionList.initExhibitionList(pageSize, totalCount, currentPage);
-			System.out.println("exhibitionList.initExhibitionList 실행 완료");
-			
 //			데이터 베이스에 값을 넘기고 가져온다.
-			HashMap<String, Integer> hm = new HashMap<String, Integer>();
-			hm.put("start", exhibitionList.getStartNo());
-			hm.put("end", exhibitionList.getEndNo());
-			hm.put("yy", yy);
-			hm.put("MM", MM);
-			hm.put("dd", dd);
-			System.out.println(hm);
-			
 			exhibitionList.setExhibitionList(mapper.exhibitionEndList(hm));
 			System.out.println("mapper.exhibitionList 실행완료");
 			
@@ -139,5 +121,58 @@ public class ExhibitionController {
 		
 	}
 	
+	@RequestMapping("/exhibitionManager")
+	public String exhibitionManeger(HttpServletRequest request, Model model) {
+		exhibitionDAO mapper = sqlSession.getMapper(exhibitionDAO.class);
+		int pageSize = 20;
+		int currentPage = 1;
+		try {
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		}catch (Exception e) {}
+		int totalCount = mapper.exhibitionCount();
+		
+		exhibitionList.initExhibitionList(pageSize, totalCount, currentPage);
+		
+		HashMap<String, Integer> hm = new HashMap<String, Integer>();
+		hm.put("start", exhibitionList.getStartNo());
+		hm.put("end", exhibitionList.getEndNo());
+		System.out.println(hm);
+		exhibitionList.setExhibitionList(mapper.exhibitionList(hm));
+		
+		model.addAttribute("exhibitionList", exhibitionList);		
+		
+		return "exhibition/exhibitionManager";
+	}
+	
+	@RequestMapping("/exhibitionDelete")
+	public String exhibitionDelete(HttpServletRequest request) {
+		
+		exhibitionDAO mapper = sqlSession.getMapper(exhibitionDAO.class);
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		mapper.exhibitionDelete(idx);
+		
+		return "redirect:exhibitionManager";
+	}
+	
+	@RequestMapping("/exhibitionUpdate")
+	public String exhibitionUpdate(HttpServletRequest request, ExhibitionVO vo, Model model) {
+		System.out.println("exhibitionUpdate 실행");
+		exhibitionDAO mapper = sqlSession.getMapper(exhibitionDAO.class);
+		int idx = Integer.parseInt(request.getParameter("idx"));
+		vo = mapper.selectData(idx);	//해당 idx의 데이터를 가져온다.
+		model.addAttribute("vo", vo);
+		
+		return "exhibition/exhibitionUpdate";
+	}
+	
+	@RequestMapping("/exhibitionUpdateOK")
+	public String exhibitionUpdate(HttpServletRequest request, ExhibitionVO vo) {
+		System.out.println("exhibitionUpdateOK 실행");
+		exhibitionDAO mapper = sqlSession.getMapper(exhibitionDAO.class);
+		
+		mapper.exhibitionUpdate(vo);
+		
+		return "redirect:exhibitionManager";
+	}
 	
 }
